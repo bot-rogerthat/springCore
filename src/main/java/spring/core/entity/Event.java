@@ -1,14 +1,16 @@
 package spring.core.entity;
 
+import java.math.BigDecimal;
+
 public class Event {
     private String id;
     private String name;
     private String date;
-    private Long price;
+    private BigDecimal price;
     private Rating rating;
     private Auditorium auditorium;
 
-    public Event(String name, Long price, Rating rating) {
+    public Event(String name, BigDecimal price, Rating rating) {
         this.name = name;
         this.price = price;
         this.rating = rating;
@@ -39,11 +41,11 @@ public class Event {
         this.date = date;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

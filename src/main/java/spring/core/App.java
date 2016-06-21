@@ -34,8 +34,12 @@ public class App {
         System.out.println("vips: " + app.getAuditoriumService().getVipSeats("right"));
         System.out.println("user: " + app.getUserService().getUserByEmail("john@mail.ru"));
         System.out.println("user ticket: " + app.getUserService().getBookedTickets("john").get(0));
-        System.out.println("price for user: " + app.getBookingService().getTicketPrice(event, "1", user));
+        System.out.println("price for user (discount birthday): " + app.getBookingService().getTicketPrice(event, "1", user));
         System.out.println("all purchased tickets for event : " + app.getBookingService().getTicketsForEvent(event));
+        for(int i = 0; i < 8; i++){
+            app.getBookingService().bookTicket(user, new Ticket("" + i));
+        }
+        System.out.println("price for user (discount each ten ticket): " + app.getBookingService().getTicketPrice(event, "1", user));
     }
 
 

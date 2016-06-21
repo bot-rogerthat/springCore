@@ -6,25 +6,26 @@ import spring.core.entity.Event;
 import spring.core.entity.Ticket;
 import spring.core.entity.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookingService {
 
-    private final int VIP_MARKUP = 50;
+    private final BigDecimal VIP_MARKUP = new BigDecimal(50);
     private TicketDao ticketDao;
     private UserDao userDao;
     private DiscountService discountService;
 
-    public double getTicketPrice(Event event, String seat, User user) {
-        double discount = discountService.getDiscount(user, event);
-        double price = ticketDao.getAllTickets().stream()
+    public BigDecimal getTicketPrice(Event event, String seat, User user) {
+        BigDecimal discount = discountService.getDiscount(user, event);
+        BigDecimal price = ticketDao.getAllTickets().stream()
                 .filter(ticket -> event.equals(ticket.getEvent()))
                 .filter(ticket -> seat.equals(ticket.getSeat()))
                 .findFirst()
                 .get()
-                .getEvent().getPrice() + (event.getAuditorium().isVip(seat) ? VIP_MARKUP : 0);
-        return price * discount;
+                .getEvent().getPrice().add((event.getAuditorium().isVip(seat) ? VIP_MARKUP : new BigDecimal(0))) ;
+        return price.multiply(discount);
     }
 
     public void bookTicket(User user, Ticket ticket) {

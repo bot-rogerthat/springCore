@@ -4,16 +4,18 @@ import spring.core.entity.Event;
 import spring.core.entity.User;
 import spring.core.entity.discount.DiscountStrategy;
 
-public class DiscountEachTenTicket implements DiscountStrategy {
-    private Double value;
+import java.math.BigDecimal;
 
-    public DiscountEachTenTicket(Double value) {
+public class DiscountEachTenTicket implements DiscountStrategy {
+    private BigDecimal value;
+
+    public DiscountEachTenTicket(BigDecimal value) {
         this.value = value;
     }
 
     @Override
-    public Double apply(User user, Event event) {
-        return user.getDayOfBirth().equals(event.getDate()) ? value : 1.0;
+    public BigDecimal apply(User user, Event event) {
+        return user.getDayOfBirth().equals(event.getDate()) ? value : new BigDecimal(1.0);
     }
 
     @Override
