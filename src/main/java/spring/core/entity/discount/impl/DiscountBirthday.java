@@ -15,8 +15,7 @@ public class DiscountBirthday implements DiscountStrategy {
 
     @Override
     public BigDecimal apply(User user, Event event) {
-        int countTickets = user.getTickets().size();
-        return (countTickets != 0 && countTickets % 9 == 0) ? value : new BigDecimal(1.0);
+        return user.getDayOfBirth().equals(event.getDate()) ? value : new BigDecimal(1.0);
     }
 
     @Override
