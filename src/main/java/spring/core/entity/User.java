@@ -1,5 +1,6 @@
 package spring.core.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,10 +9,10 @@ public class User {
     private int id;
     private String name;
     private String email;
-    private String dayOfBirth;
+    private LocalDate dayOfBirth;
     private List<Ticket> tickets;
 
-    public User(String name, String email, String dayOfBirth) {
+    public User(String name, String email, LocalDate dayOfBirth) {
         this.id = new Random().nextInt();
         this.name = name;
         this.email = email;
@@ -47,11 +48,11 @@ public class User {
         this.email = email;
     }
 
-    public String getDayOfBirth() {
+    public LocalDate getDayOfBirth() {
         return dayOfBirth;
     }
 
-    public void setDayOfBirth(String dayOfBirth) {
+    public void setDayOfBirth(LocalDate dayOfBirth) {
         this.dayOfBirth = dayOfBirth;
     }
 

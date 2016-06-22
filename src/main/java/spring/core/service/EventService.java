@@ -4,6 +4,8 @@ import spring.core.dao.EventDao;
 import spring.core.entity.Auditorium;
 import spring.core.entity.Event;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class EventService {
@@ -29,9 +31,10 @@ public class EventService {
         return eventDao.getAllEvents();
     }
 
-    public void assignAuditorium(Event event, Auditorium auditorium, String date) {
+    public void assignAuditorium(Event event, Auditorium auditorium, LocalDate date, LocalTime time) {
         event.setAuditorium(auditorium);
         event.setDate(date);
+        event.setTime(time);
     }
 
     public void setEventDao(EventDao eventDao) {

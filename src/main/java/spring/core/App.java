@@ -8,6 +8,9 @@ import spring.core.entity.Ticket;
 import spring.core.entity.User;
 import spring.core.service.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class App {
     private AuditoriumService auditoriumService;
     private BookingService bookingService;
@@ -24,7 +27,7 @@ public class App {
         Auditorium auditorium = app.getAuditoriumService().getAuditoriumDao().getAllAuditoriums().get(0);
         Ticket ticket = app.getBookingService().getTicketDao().getAllTickets().get(0);
 
-        app.getEventService().assignAuditorium(event, auditorium, "2016-05-27 19:20");
+        app.getEventService().assignAuditorium(event, auditorium, LocalDate.parse("2016-05-27"), LocalTime.parse("19:20"));
         ticket.setEvent(event);
         app.getBookingService().bookTicket(user, ticket);
 

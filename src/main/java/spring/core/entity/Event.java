@@ -1,12 +1,15 @@
 package spring.core.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Random;
 
 public class Event {
     private int id;
     private String name;
-    private String date;
+    private LocalDate date;
+    private LocalTime time;
     private BigDecimal price;
     private Rating rating;
     private Auditorium auditorium;
@@ -34,13 +37,20 @@ public class Event {
         this.name = name;
     }
 
-
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     public BigDecimal getPrice() {
@@ -69,18 +79,6 @@ public class Event {
     }
 
     @Override
-    public String toString() {
-        return "Event{" +
-                "auditorium=" + auditorium +
-                ", id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", date='" + date + '\'' +
-                ", price=" + price +
-                ", rating=" + rating +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -94,5 +92,18 @@ public class Event {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", time=" + time +
+                ", price=" + price +
+                ", rating=" + rating +
+                ", auditorium=" + auditorium +
+                '}';
     }
 }
