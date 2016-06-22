@@ -2,14 +2,13 @@ package spring.core;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import spring.core.entity.Auditorium;
-import spring.core.entity.Event;
-import spring.core.entity.Ticket;
-import spring.core.entity.User;
+import spring.core.entity.*;
 import spring.core.service.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.math.BigDecimal;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class App {
     private AuditoriumService auditoriumService;
@@ -22,29 +21,42 @@ public class App {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/main.xml");
         App app = ctx.getBean("app", App.class);
 
-        User user = app.getUserService().getUsersByName("john");
-        Event event = app.getEventService().getEventDao().getAllEvents().get(0);
-        Auditorium auditorium = app.getAuditoriumService().getAuditoriumDao().getAllAuditoriums().get(0);
-        Ticket ticket = app.getBookingService().getTicketDao().getAllTickets().get(0);
+        Auditorium auditorium = new Auditorium();
+        auditorium.setName("gr45Hall");
+        auditorium.setNumberOfSeats(50);
+        auditorium.setVips(Arrays.asList(1, 2, 3, 4));
 
-        app.getEventService().assignAuditorium(event, auditorium, LocalDate.parse("2016-05-27"), LocalTime.parse("19:20"));
-        ticket.setEvent(event);
-        app.getBookingService().bookTicket(user, ticket);
+        app.getAuditoriumService().getAuditoriumDao().create(auditorium);
 
-        System.out.println("event: " + event);
-        System.out.println("auditorium: " + auditorium.getName());
-        System.out.println("seats: " + app.getAuditoriumService().getSeatsNumber("rightHall"));
-        System.out.println("vips: " + app.getAuditoriumService().getVipSeats("rightHall"));
-        System.out.println("user: " + app.getUserService().getUserByEmail("john@mail.ru"));
-        System.out.println("user ticket: " + app.getUserService().getBookedTickets("john").get(0));
-        System.out.println("price for user (discount birthday): " + app.getBookingService().getTicketPrice(event, "1", user));
-        System.out.println("all purchased tickets for event : " + app.getBookingService().getTicketsForEvent(event));
-        for (int i = 0; i < 8; i++) {
-            Ticket newTicket = new Ticket("" + i);
-            newTicket.setEvent(event);
-            app.getBookingService().bookTicket(user, newTicket);
-        }
-        System.out.println("price for user (discount each ten ticket): " + app.getBookingService().getTicketPrice(event, "1", user));
+        User user = new User();
+        user.setName("vasya");
+        user.setEmail("vasya@mail.ru");
+        user.setDayOfBirth(Timestamp.valueOf("2016-05-27 00:00:00"));
+
+        app.getUserService().getUserDao().create(user);
+
+        Event event = new Event();
+        event.setName("warcraft");
+        event.setDate(Timestamp.valueOf("2016-05-27 00:00:00"));
+        event.setTime(Time.valueOf("19:20:00"));
+        event.setPrice(new BigDecimal(300));
+        event.setRating(Rating.MID);
+        event.setAuditorium(app.getAuditoriumService().getAuditoriumDao().getAllAuditoriums().get(0));
+
+        app.getEventService().getEventDao().create(event);
+
+        Ticket ticket = new Ticket();
+        ticket.setSeat(25);
+        ticket.setEvent(app.getEventService().getEventDao().getAllEvents().get(0));
+        ticket.setBooked(true);
+        ticket.setUser(app.getUserService().getUserDao().getAllUsers().get(0));
+
+        app.getBookingService().getTicketDao().create(ticket);
+
+        System.out.println(app.getAuditoriumService().getAuditoriumDao().getAllAuditoriums());
+        System.out.println(app.getUserService().getUserDao().getAllUsers());
+        System.out.println(app.getEventService().getEventDao().getAllEvents());
+        System.out.println(app.getBookingService().getTicketDao().getAllTickets());
     }
 
 

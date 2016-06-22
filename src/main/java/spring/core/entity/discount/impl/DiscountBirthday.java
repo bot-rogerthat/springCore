@@ -5,6 +5,7 @@ import spring.core.entity.User;
 import spring.core.entity.discount.DiscountStrategy;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 public class DiscountBirthday implements DiscountStrategy {
@@ -19,9 +20,10 @@ public class DiscountBirthday implements DiscountStrategy {
         return checkMonthAndDay(user.getDayOfBirth(), event.getDate()) ? value : new BigDecimal(1.0);
     }
 
-    private boolean checkMonthAndDay(LocalDate target, LocalDate dest) {
-        return target.getDayOfMonth() == dest.getDayOfMonth()
-                && target.getDayOfMonth() == dest.getDayOfMonth();
+    private boolean checkMonthAndDay(Timestamp target, Timestamp dest) {
+        //// TODO: 6/22/2016 fix
+        return target.getMonth() == dest.getMonth()
+                && target.getDay() == dest.getDay();
     }
 
     @Override

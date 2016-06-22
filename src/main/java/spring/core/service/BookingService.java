@@ -24,14 +24,14 @@ public class BookingService {
                 .filter(ticket -> seat.equals(ticket.getSeat()))
                 .findFirst()
                 .get()
-                .getEvent().getPrice().add((event.getAuditorium().isVip(seat) ? VIP_MARKUP : new BigDecimal(0)));
+                .getEvent().getPrice().add((event.getAuditorium().getVips().contains(seat) ? VIP_MARKUP : new BigDecimal(0)));
         return price.multiply(discount);
     }
 
     public void bookTicket(User user, Ticket ticket) {
         ticket.setBooked(true);
         ticket.setUser(user);
-        user.addTicket(ticket);
+        user.getTickets().add(ticket);
     }
 
     public List<Ticket> getTicketsForEvent(Event event) {

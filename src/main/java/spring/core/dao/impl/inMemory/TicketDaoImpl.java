@@ -1,4 +1,4 @@
-package spring.core.dao.impl;
+package spring.core.dao.impl.inMemory;
 
 import spring.core.dao.TicketDao;
 import spring.core.entity.Ticket;

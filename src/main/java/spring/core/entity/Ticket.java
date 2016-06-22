@@ -1,19 +1,11 @@
 package spring.core.entity;
 
-import java.util.Random;
-
 public class Ticket {
     private int id;
-    private String seat;
+    private Integer seat;
     private boolean isBooked;
     private Event event;
     private User user;
-
-    public Ticket(String seat) {
-        this.id = new Random().nextInt();
-        this.seat = seat;
-        this.isBooked = false;
-    }
 
     public int getId() {
         return id;
@@ -23,11 +15,11 @@ public class Ticket {
         this.id = id;
     }
 
-    public String getSeat() {
+    public Integer getSeat() {
         return seat;
     }
 
-    public void setSeat(String seat) {
+    public void setSeat(Integer seat) {
         this.seat = seat;
     }
 

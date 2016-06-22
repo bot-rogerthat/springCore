@@ -1,4 +1,4 @@
-package spring.core.dao.impl;
+package spring.core.dao.impl.inMemory;
 
 import spring.core.dao.EventDao;
 import spring.core.entity.Event;

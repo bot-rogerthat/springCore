@@ -1,24 +1,12 @@
 package spring.core.entity;
 
-import java.util.Random;
-import java.util.Set;
+import java.util.List;
 
 public class Auditorium {
     public int id;
     public String name;
     public int numberOfSeats;
-    public Set<String> vips;
-
-    public Auditorium(String name, int numberOfSeats, Set<String> vips) {
-        this.id = new Random().nextInt();
-        this.name = name;
-        this.numberOfSeats = numberOfSeats;
-        this.vips = vips;
-    }
-
-    public boolean isVip(String target) {
-        return vips.contains(target);
-    }
+    public List<Integer> vips;
 
     public int getId() {
         return id;
@@ -44,11 +32,11 @@ public class Auditorium {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public Set<String> getVips() {
+    public List<Integer> getVips() {
         return vips;
     }
 
-    public void setVips(Set<String> vips) {
+    public void setVips(List<Integer> vips) {
         this.vips = vips;
     }
 

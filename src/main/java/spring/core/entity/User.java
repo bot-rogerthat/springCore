@@ -1,28 +1,15 @@
 package spring.core.entity;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class User {
     private int id;
     private String name;
     private String email;
-    private LocalDate dayOfBirth;
+    private Timestamp dayOfBirth;
     private List<Ticket> tickets;
-
-    public User(String name, String email, LocalDate dayOfBirth) {
-        this.id = new Random().nextInt();
-        this.name = name;
-        this.email = email;
-        this.dayOfBirth = dayOfBirth;
-        this.tickets = new ArrayList<>();
-    }
-
-    public void addTicket(Ticket target) {
-        tickets.add(target);
-    }
 
     public int getId() {
         return id;
@@ -48,11 +35,11 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getDayOfBirth() {
+    public Timestamp getDayOfBirth() {
         return dayOfBirth;
     }
 
-    public void setDayOfBirth(LocalDate dayOfBirth) {
+    public void setDayOfBirth(Timestamp dayOfBirth) {
         this.dayOfBirth = dayOfBirth;
     }
 

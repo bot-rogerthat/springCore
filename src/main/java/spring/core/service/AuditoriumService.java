@@ -4,7 +4,6 @@ import spring.core.dao.AuditoriumDao;
 import spring.core.entity.Auditorium;
 
 import java.util.List;
-import java.util.Set;
 
 public class AuditoriumService {
     private AuditoriumDao auditoriumDao;
@@ -21,7 +20,7 @@ public class AuditoriumService {
                 .getNumberOfSeats();
     }
 
-    public Set<String> getVipSeats(String name) {
+    public List<Integer> getVipSeats(String name) {
         return auditoriumDao.getAllAuditoriums().stream()
                 .filter(auditorium -> name.equalsIgnoreCase(auditorium.getName()))
                 .findFirst()

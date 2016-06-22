@@ -9,6 +9,3 @@
     <bean id="discountAspect" class="spring.core.aop.DiscountAspect"/>
     <bean id="luckyWinnerAspect" class="spring.core.aop.LuckyWinnerAspect"/>
 </beans>
-
-
-

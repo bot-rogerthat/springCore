@@ -1,25 +1,19 @@
 package spring.core.entity;
 
 import java.math.BigDecimal;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Random;
 
 public class Event {
     private int id;
     private String name;
-    private LocalDate date;
-    private LocalTime time;
+    private Timestamp date;
+    private Time time;
     private BigDecimal price;
     private Rating rating;
     private Auditorium auditorium;
-
-    public Event(String name, BigDecimal price, Rating rating) {
-        this.id = new Random().nextInt();
-        this.name = name;
-        this.price = price;
-        this.rating = rating;
-    }
 
     public int getId() {
         return id;
@@ -37,19 +31,19 @@ public class Event {
         this.name = name;
     }
 
-    public LocalDate getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
-    public LocalTime getTime() {
+    public Time getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(Time time) {
         this.time = time;
     }
 
@@ -68,7 +62,6 @@ public class Event {
     public void setRating(Rating rating) {
         this.rating = rating;
     }
-
 
     public Auditorium getAuditorium() {
         return auditorium;
