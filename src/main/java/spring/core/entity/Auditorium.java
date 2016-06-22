@@ -1,5 +1,6 @@
 package spring.core.entity;
 
+import java.util.Random;
 import java.util.Set;
 
 public class Auditorium {
@@ -9,7 +10,7 @@ public class Auditorium {
     public Set<String> vips;
 
     public Auditorium(String name, int numberOfSeats, Set<String> vips) {
-        this.id = (int) (Math.random() * 100);
+        this.id = new Random().nextInt();
         this.name = name;
         this.numberOfSeats = numberOfSeats;
         this.vips = vips;

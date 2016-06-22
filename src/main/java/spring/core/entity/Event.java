@@ -1,6 +1,7 @@
 package spring.core.entity;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 public class Event {
     private int id;
@@ -11,7 +12,7 @@ public class Event {
     private Auditorium auditorium;
 
     public Event(String name, BigDecimal price, Rating rating) {
-        this.id = (int) (Math.random() * 100);
+        this.id = new Random().nextInt();
         this.name = name;
         this.price = price;
         this.rating = rating;

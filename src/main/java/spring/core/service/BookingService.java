@@ -24,7 +24,7 @@ public class BookingService {
                 .filter(ticket -> seat.equals(ticket.getSeat()))
                 .findFirst()
                 .get()
-                .getEvent().getPrice().add((event.getAuditorium().isVip(seat) ? VIP_MARKUP : new BigDecimal(0))) ;
+                .getEvent().getPrice().add((event.getAuditorium().isVip(seat) ? VIP_MARKUP : new BigDecimal(0)));
         return price.multiply(discount);
     }
 

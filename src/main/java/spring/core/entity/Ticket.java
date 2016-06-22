@@ -1,5 +1,7 @@
 package spring.core.entity;
 
+import java.util.Random;
+
 public class Ticket {
     private int id;
     private String seat;
@@ -8,7 +10,7 @@ public class Ticket {
     private User user;
 
     public Ticket(String seat) {
-        this.id = (int) (Math.random() * 100);
+        this.id = new Random().nextInt();
         this.seat = seat;
         this.isBooked = false;
     }

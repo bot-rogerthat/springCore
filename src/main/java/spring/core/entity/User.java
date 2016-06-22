@@ -2,6 +2,7 @@ package spring.core.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class User {
     private int id;
@@ -11,7 +12,7 @@ public class User {
     private List<Ticket> tickets;
 
     public User(String name, String email, String dayOfBirth) {
-        this.id = (int) (Math.random() * 100);
+        this.id = new Random().nextInt();
         this.name = name;
         this.email = email;
         this.dayOfBirth = dayOfBirth;
