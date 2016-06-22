@@ -14,7 +14,10 @@ public class EventDaoImpl implements EventDao {
     }
 
     public void update(Event target) {
-        /*NOP*/
+        if (!events.add(target)) {
+            events.remove(target);
+            events.add(target);
+        }
     }
 
     public void delete(Event target) {
@@ -23,9 +26,11 @@ public class EventDaoImpl implements EventDao {
         }
     }
 
-    public Event getById(String id) {
-         /*NOP*/
-        return null;
+    public Event getById(int id) {
+        return events.stream()
+                .filter(event -> event.getId() == id)
+                .findFirst()
+                .get();
     }
 
     public List<Event> getAllEvents() {

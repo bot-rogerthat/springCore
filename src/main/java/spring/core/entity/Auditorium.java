@@ -3,12 +3,13 @@ package spring.core.entity;
 import java.util.Set;
 
 public class Auditorium {
-    public String id;
+    public int id;
     public String name;
     public int numberOfSeats;
     public Set<String> vips;
 
     public Auditorium(String name, int numberOfSeats, Set<String> vips) {
+        this.id = (int) (Math.random() * 100);
         this.name = name;
         this.numberOfSeats = numberOfSeats;
         this.vips = vips;
@@ -18,11 +19,11 @@ public class Auditorium {
         return vips.contains(target);
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -67,15 +68,12 @@ public class Auditorium {
 
         Auditorium that = (Auditorium) o;
 
-        if (numberOfSeats != that.numberOfSeats) return false;
-        return name != null ? name.equals(that.name) : that.name == null;
+        return id == that.id;
 
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + numberOfSeats;
-        return result;
+        return id;
     }
 }

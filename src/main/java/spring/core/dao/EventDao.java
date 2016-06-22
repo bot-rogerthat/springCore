@@ -11,7 +11,7 @@ public interface EventDao {
 
     void delete(Event target);
 
-    Event getById(String id);
+    Event getById(int id);
 
     List<Event> getAllEvents();
 }

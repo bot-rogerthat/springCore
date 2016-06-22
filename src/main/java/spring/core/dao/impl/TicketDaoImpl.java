@@ -16,7 +16,10 @@ public class TicketDaoImpl implements TicketDao {
     }
 
     public void update(Ticket target) {
-        /*NOP*/
+        if (!tickets.add(target)) {
+            tickets.remove(target);
+            tickets.add(target);
+        }
     }
 
     public void delete(Ticket target) {
@@ -25,9 +28,11 @@ public class TicketDaoImpl implements TicketDao {
         }
     }
 
-    public Ticket getById(String id) {
-         /*NOP*/
-        return null;
+    public Ticket getById(int id) {
+        return tickets.stream()
+                .filter(ticket -> ticket.getId() == id)
+                .findFirst()
+                .get();
     }
 
     public List<Ticket> getAllTickets() {

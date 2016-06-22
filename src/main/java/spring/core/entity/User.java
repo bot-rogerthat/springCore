@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private String id;
+    private int id;
     private String name;
     private String email;
     private String dayOfBirth;
     private List<Ticket> tickets;
 
     public User(String name, String email, String dayOfBirth) {
+        this.id = (int) (Math.random() * 100);
         this.name = name;
         this.email = email;
         this.dayOfBirth = dayOfBirth;
@@ -21,11 +22,11 @@ public class User {
         tickets.add(target);
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -69,5 +70,21 @@ public class User {
                 ", email='" + email + '\'' +
                 ", dayOfBirth='" + dayOfBirth + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return id == user.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

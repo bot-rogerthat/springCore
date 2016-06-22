@@ -11,7 +11,7 @@ public interface AuditoriumDao {
 
     void delete(Auditorium target);
 
-    Auditorium getById(String id);
+    Auditorium getById(int id);
 
     List<Auditorium> getAllAuditoriums();
 }

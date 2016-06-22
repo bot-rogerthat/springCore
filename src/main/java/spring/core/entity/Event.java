@@ -3,7 +3,7 @@ package spring.core.entity;
 import java.math.BigDecimal;
 
 public class Event {
-    private String id;
+    private int id;
     private String name;
     private String date;
     private BigDecimal price;
@@ -11,16 +11,17 @@ public class Event {
     private Auditorium auditorium;
 
     public Event(String name, BigDecimal price, Rating rating) {
+        this.id = (int) (Math.random() * 100);
         this.name = name;
         this.price = price;
         this.rating = rating;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -85,17 +86,12 @@ public class Event {
 
         Event event = (Event) o;
 
-        if (name != null ? !name.equals(event.name) : event.name != null) return false;
-        if (date != null ? !date.equals(event.date) : event.date != null) return false;
-        return auditorium != null ? auditorium.equals(event.auditorium) : event.auditorium == null;
+        return id == event.id;
 
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (auditorium != null ? auditorium.hashCode() : 0);
-        return result;
+        return id;
     }
 }

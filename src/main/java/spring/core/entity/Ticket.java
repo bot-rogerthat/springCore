@@ -1,22 +1,23 @@
 package spring.core.entity;
 
 public class Ticket {
-    private String id;
+    private int id;
     private String seat;
     private boolean isBooked;
     private Event event;
     private User user;
 
     public Ticket(String seat) {
+        this.id = (int) (Math.random() * 100);
         this.seat = seat;
         this.isBooked = false;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -61,5 +62,21 @@ public class Ticket {
                 ", event=" + event +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ticket ticket = (Ticket) o;
+
+        return id == ticket.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

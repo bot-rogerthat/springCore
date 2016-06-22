@@ -16,7 +16,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void update(User target) {
-        /*NOP*/
+        if (!users.add(target)) {
+            users.remove(target);
+            users.add(target);
+        }
     }
 
     public void delete(User target) {
@@ -25,9 +28,11 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public User getById(String id) {
-         /*NOP*/
-        return null;
+    public User getById(int id) {
+        return users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst()
+                .get();
     }
 
     public List<User> getAllUsers() {

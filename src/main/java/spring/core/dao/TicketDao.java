@@ -11,7 +11,7 @@ public interface TicketDao {
 
     void delete(Ticket target);
 
-    Ticket getById(String id);
+    Ticket getById(int id);
 
     List<Ticket> getAllTickets();
 }

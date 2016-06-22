@@ -17,7 +17,7 @@ public class UserService {
         userDao.delete(target);
     }
 
-    public User getById(String id) {
+    public User getById(int id) {
         return userDao.getById(id);
     }
 

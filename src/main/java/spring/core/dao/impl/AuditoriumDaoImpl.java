@@ -16,7 +16,10 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     }
 
     public void update(Auditorium target) {
-        /*NOP*/
+        if (!auditoriums.add(target)) {
+            auditoriums.remove(target);
+            auditoriums.add(target);
+        }
     }
 
     public void delete(Auditorium target) {
@@ -25,9 +28,11 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
         }
     }
 
-    public Auditorium getById(String id) {
-         /*NOP*/
-        return null;
+    public Auditorium getById(int id) {
+        return auditoriums.stream()
+                .filter(auditorium -> auditorium.getId() == id)
+                .findFirst()
+                .get();
     }
 
     public List<Auditorium> getAllAuditoriums() {
