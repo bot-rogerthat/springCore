@@ -1,7 +1,7 @@
 package spring.core.entity;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -9,7 +9,7 @@ public class User {
     private String name;
     private String email;
     private Timestamp dayOfBirth;
-    private List<Ticket> tickets;
+    private List<Ticket> tickets = new ArrayList<>();
 
     public int getId() {
         return id;

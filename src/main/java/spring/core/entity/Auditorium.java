@@ -1,12 +1,13 @@
 package spring.core.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Auditorium {
     public int id;
     public String name;
     public int numberOfSeats;
-    public List<Integer> vips;
+    public List<Integer> vips = new ArrayList<>();
 
     public int getId() {
         return id;

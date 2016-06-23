@@ -5,7 +5,9 @@
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <aop:aspectj-autoproxy/>
-    <bean id="counterAspect" class="spring.core.aop.CounterAspect"/>
+    <bean id="counterAspect" class="spring.core.aop.CounterAspect">
+        <property name="eventStatService" ref="eventStatService"/>
+    </bean>
     <bean id="discountAspect" class="spring.core.aop.DiscountAspect"/>
     <bean id="luckyWinnerAspect" class="spring.core.aop.LuckyWinnerAspect"/>
 </beans>

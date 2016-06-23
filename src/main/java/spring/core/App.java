@@ -15,6 +15,7 @@ public class App {
     private BookingService bookingService;
     private DiscountService discountService;
     private EventService eventService;
+    private EventStatService eventStatService;
     private UserService userService;
 
     public static void main(String[] args) {
@@ -53,10 +54,17 @@ public class App {
 
         app.getBookingService().getTicketDao().create(ticket);
 
+        //counters++
+        BigDecimal price = app.getBookingService().getTicketPrice(app.getEventService().getEventDao().getAllEvents().get(0), 25,
+                app.getUserService().getUserDao().getAllUsers().get(0));
+        app.getBookingService().bookTicket(user, ticket);
+        app.getEventService().getByName("warcraft");
+
         System.out.println(app.getAuditoriumService().getAuditoriumDao().getAllAuditoriums());
         System.out.println(app.getUserService().getUserDao().getAllUsers());
         System.out.println(app.getEventService().getEventDao().getAllEvents());
         System.out.println(app.getBookingService().getTicketDao().getAllTickets());
+        System.out.println(app.getEventStatService().getEventStatDao().getAllEventStats());
     }
 
 
@@ -98,5 +106,13 @@ public class App {
 
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public EventStatService getEventStatService() {
+        return eventStatService;
+    }
+
+    public void setEventStatService(EventStatService eventStatService) {
+        this.eventStatService = eventStatService;
     }
 }

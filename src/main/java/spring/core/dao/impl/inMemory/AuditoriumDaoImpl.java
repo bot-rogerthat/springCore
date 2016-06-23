@@ -22,7 +22,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
         }
     }
 
-    public void delete(int target) {
+    public void delete(Auditorium target) {
         if (auditoriums.contains(target)) {
             auditoriums.remove(target);
         }

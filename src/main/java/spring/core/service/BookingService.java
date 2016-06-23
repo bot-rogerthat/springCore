@@ -17,7 +17,7 @@ public class BookingService {
     private UserDao userDao;
     private DiscountService discountService;
 
-    public BigDecimal getTicketPrice(Event event, String seat, User user) {
+    public BigDecimal getTicketPrice(Event event, Integer seat, User user) {
         BigDecimal discount = discountService.getDiscount(user, event);
         BigDecimal price = ticketDao.getAllTickets().stream()
                 .filter(ticket -> event.equals(ticket.getEvent()))
