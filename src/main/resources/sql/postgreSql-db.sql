@@ -24,7 +24,7 @@ CREATE SEQUENCE public."Event_id_seq"
 ALTER TABLE public."Event_id_seq"
   OWNER TO postgres;
   
- -- Sequence: public."Ticket_id_seq"
+-- Sequence: public."Ticket_id_seq"
 
 -- DROP SEQUENCE public."Ticket_id_seq";
 
@@ -37,7 +37,7 @@ CREATE SEQUENCE public."Ticket_id_seq"
 ALTER TABLE public."Ticket_id_seq"
   OWNER TO postgres;
   
- -- Sequence: public."User_id_seq"
+-- Sequence: public."User_id_seq"
 
 -- DROP SEQUENCE public."User_id_seq";
 
@@ -50,7 +50,7 @@ CREATE SEQUENCE public."User_id_seq"
 ALTER TABLE public."User_id_seq"
   OWNER TO postgres;
   
- -- Sequence: public."VipSeats_id_seq"
+-- Sequence: public."VipSeats_id_seq"
 
 -- DROP SEQUENCE public."VipSeats_id_seq";
 
@@ -61,6 +61,19 @@ CREATE SEQUENCE public."VipSeats_id_seq"
   START 20
   CACHE 1;
 ALTER TABLE public."VipSeats_id_seq"
+  OWNER TO postgres;
+
+-- Sequence: public.event_stat_id_seq
+
+-- DROP SEQUENCE public.event_stat_id_seq;
+
+CREATE SEQUENCE public.event_stat_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.event_stat_id_seq
   OWNER TO postgres;
 
 
@@ -161,4 +174,26 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.ticket
+  OWNER TO postgres;
+
+-- Table: public.event_stat
+
+-- DROP TABLE public.event_stat;
+
+CREATE TABLE public.event_stat
+(
+  id integer NOT NULL DEFAULT nextval('event_stat_id_seq'::regclass),
+  event_id bigint,
+  count_by_event_name bigint,
+  count_by_event_price bigint,
+  count_by_ticket_booked bigint,
+  CONSTRAINT pk_event_stat_id PRIMARY KEY (id),
+  CONSTRAINT fk_event_id FOREIGN KEY (event_id)
+      REFERENCES public.event (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.event_stat
   OWNER TO postgres;
