@@ -64,9 +64,7 @@ public class AuditoriumDaoJdbcImpl implements AuditoriumDao {
 
     private List<Integer> getVipSeats(Integer id) {
         return jdbcTemplate.query("SELECT * FROM vip_seat WHERE auditorium_id = ?", new Object[]{id},
-                (rs, rowNum) -> {
-                    return rs.getInt("seat_number");
-                });
+                (rs, rowNum) -> rs.getInt("seat_number"));
     }
 
     public JdbcTemplate getJdbcTemplate() {

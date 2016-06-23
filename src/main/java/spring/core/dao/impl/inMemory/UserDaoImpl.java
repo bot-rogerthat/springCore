@@ -1,15 +1,13 @@
-package spring.core.dao.impl.inMemory;
+package spring.core.dao.impl.inmemory;
 
 import spring.core.dao.UserDao;
 import spring.core.entity.User;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class UserDaoImpl implements UserDao {
-    private Set<User> users = new HashSet<>();
+    private List<User> users = new ArrayList<>();
 
     public void create(User target) {
         users.add(target);
@@ -39,7 +37,7 @@ public class UserDaoImpl implements UserDao {
         return new ArrayList<>(users);
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 

@@ -41,24 +41,20 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
-    public TicketDao getTicketDao() {
-        return ticketDao;
+    public void create(Ticket target) {
+        ticketDao.create(target);
+    }
+
+    public List<Ticket> getAllTickets() {
+        return ticketDao.getAllTickets();
     }
 
     public void setTicketDao(TicketDao ticketDao) {
         this.ticketDao = ticketDao;
     }
 
-    public UserDao getUserDao() {
-        return userDao;
-    }
-
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
-    }
-
-    public DiscountService getDiscountService() {
-        return discountService;
     }
 
     public void setDiscountService(DiscountService discountService) {

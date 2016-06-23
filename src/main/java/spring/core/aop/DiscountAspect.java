@@ -11,8 +11,8 @@ import java.util.Map;
 
 @Aspect
 public class DiscountAspect {
-    private Map<String, Integer> counterByDiscountStrategy = new HashMap<>();
-    private Map<User, Integer> counterByUserDiscount = new HashMap<>();
+    private final Map<String, Integer> counterByDiscountStrategy = new HashMap<>();
+    private final Map<User, Integer> counterByUserDiscount = new HashMap<>();
 
     @AfterReturning(pointcut = "execution(* spring.core.entity.discount.DiscountStrategy.apply(..))", returning = "discount")
     public void addCountByDiscountStrategy(JoinPoint joinPoint, BigDecimal discount) {

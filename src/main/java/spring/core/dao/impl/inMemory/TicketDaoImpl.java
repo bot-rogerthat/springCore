@@ -1,15 +1,13 @@
-package spring.core.dao.impl.inMemory;
+package spring.core.dao.impl.inmemory;
 
 import spring.core.dao.TicketDao;
 import spring.core.entity.Ticket;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class TicketDaoImpl implements TicketDao {
-    private Set<Ticket> tickets = new HashSet<>();
+    private List<Ticket> tickets = new ArrayList<>();
 
     public void create(Ticket target) {
         tickets.add(target);
@@ -39,7 +37,7 @@ public class TicketDaoImpl implements TicketDao {
         return new ArrayList<>(tickets);
     }
 
-    public void setTickets(Set<Ticket> tickets) {
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
 

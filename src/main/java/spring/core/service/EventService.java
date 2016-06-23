@@ -6,8 +6,6 @@ import spring.core.entity.Event;
 
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class EventService {
@@ -39,11 +37,11 @@ public class EventService {
         event.setTime(time);
     }
 
-    public void setEventDao(EventDao eventDao) {
-        this.eventDao = eventDao;
+    public List<Event> getAllEvents() {
+        return eventDao.getAllEvents();
     }
 
-    public EventDao getEventDao() {
-        return eventDao;
+    public void setEventDao(EventDao eventDao) {
+        this.eventDao = eventDao;
     }
 }

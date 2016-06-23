@@ -4,6 +4,8 @@ import spring.core.dao.EventStatDao;
 import spring.core.entity.Event;
 import spring.core.entity.EventStat;
 
+import java.util.List;
+
 public class EventStatService {
     private EventStatDao eventStatDao;
 
@@ -23,15 +25,14 @@ public class EventStatService {
 
 
     private EventStat getEventStatByEvent(Event target) {
-        EventStat eventStat = eventStatDao.getAllEventStats().stream()
+        return eventStatDao.getAllEventStats().stream()
                 .filter(es -> es.getEvent().getId() == target.getId())
                 .findFirst()
                 .orElse(null);
-        return eventStat;
     }
 
-    public EventStatDao getEventStatDao() {
-        return eventStatDao;
+    public List<EventStat> getAllEventStats() {
+        return eventStatDao.getAllEventStats();
     }
 
     public void setEventStatDao(EventStatDao eventStatDao) {

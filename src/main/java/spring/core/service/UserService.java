@@ -46,8 +46,12 @@ public class UserService {
                 .getTickets();
     }
 
-    public UserDao getUserDao() {
-        return userDao;
+    public void create(User target) {
+        userDao.create(target);
+    }
+
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 
     public void setUserDao(UserDao userDao) {

@@ -28,9 +28,14 @@ public class AuditoriumService {
                 .getVips();
     }
 
-    public AuditoriumDao getAuditoriumDao() {
-        return auditoriumDao;
+    public void create(Auditorium target) {
+        auditoriumDao.create(target);
     }
+
+    public List<Auditorium> getAllAuditoriums() {
+        return auditoriumDao.getAllAuditoriums();
+    }
+
 
     public void setAuditoriumDao(AuditoriumDao auditoriumDao) {
         this.auditoriumDao = auditoriumDao;

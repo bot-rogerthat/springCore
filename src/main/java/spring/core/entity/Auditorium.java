@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Auditorium {
-    public int id;
-    public String name;
-    public int numberOfSeats;
-    public List<Integer> vips = new ArrayList<>();
+    private int id;
+    private String name;
+    private int numberOfSeats;
+    private List<Integer> vips = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -53,8 +53,12 @@ public class Auditorium {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Auditorium that = (Auditorium) o;
 

@@ -27,14 +27,14 @@ public class App {
         auditorium.setNumberOfSeats(50);
         auditorium.setVips(Arrays.asList(1, 2, 3, 4));
 
-        app.getAuditoriumService().getAuditoriumDao().create(auditorium);
+        app.getAuditoriumService().create(auditorium);
 
         User user = new User();
         user.setName("vasya");
         user.setEmail("vasya@mail.ru");
         user.setDayOfBirth(Timestamp.valueOf("2016-05-27 00:00:00"));
 
-        app.getUserService().getUserDao().create(user);
+        app.getUserService().create(user);
 
         Event event = new Event();
         event.setName("warcraft");
@@ -42,29 +42,29 @@ public class App {
         event.setTime(Time.valueOf("19:20:00"));
         event.setPrice(new BigDecimal(300));
         event.setRating(Rating.MID);
-        event.setAuditorium(app.getAuditoriumService().getAuditoriumDao().getAllAuditoriums().get(0));
+        event.setAuditorium(app.getAuditoriumService().getAllAuditoriums().get(0));
 
-        app.getEventService().getEventDao().create(event);
+        app.getEventService().create(event);
 
         Ticket ticket = new Ticket();
         ticket.setSeat(25);
-        ticket.setEvent(app.getEventService().getEventDao().getAllEvents().get(0));
+        ticket.setEvent(app.getEventService().getAllEvents().get(0));
         ticket.setBooked(true);
-        ticket.setUser(app.getUserService().getUserDao().getAllUsers().get(0));
+        ticket.setUser(app.getUserService().getAllUsers().get(0));
 
-        app.getBookingService().getTicketDao().create(ticket);
+        app.getBookingService().create(ticket);
 
         //counters++
-        BigDecimal price = app.getBookingService().getTicketPrice(app.getEventService().getEventDao().getAllEvents().get(0), 25,
-                app.getUserService().getUserDao().getAllUsers().get(0));
+        app.getBookingService().getTicketPrice(app.getEventService().getAllEvents().get(0), 25,
+                app.getUserService().getAllUsers().get(0));
         app.getBookingService().bookTicket(user, ticket);
         app.getEventService().getByName("warcraft");
 
-        System.out.println(app.getAuditoriumService().getAuditoriumDao().getAllAuditoriums());
-        System.out.println(app.getUserService().getUserDao().getAllUsers());
-        System.out.println(app.getEventService().getEventDao().getAllEvents());
-        System.out.println(app.getBookingService().getTicketDao().getAllTickets());
-        System.out.println(app.getEventStatService().getEventStatDao().getAllEventStats());
+        System.out.println(app.getAuditoriumService().getAllAuditoriums());
+        System.out.println(app.getUserService().getAllUsers());
+        System.out.println(app.getEventService().getAllEvents());
+        System.out.println(app.getBookingService().getAllTickets());
+        System.out.println(app.getEventStatService().getAllEventStats());
     }
 
 

@@ -1,15 +1,13 @@
-package spring.core.dao.impl.inMemory;
+package spring.core.dao.impl.inmemory;
 
 import spring.core.dao.AuditoriumDao;
 import spring.core.entity.Auditorium;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class AuditoriumDaoImpl implements AuditoriumDao {
-    private Set<Auditorium> auditoriums = new HashSet<>();
+    private List<Auditorium> auditoriums = new ArrayList<>();
 
     public void create(Auditorium target) {
         auditoriums.add(target);
@@ -39,7 +37,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
         return new ArrayList<>(auditoriums);
     }
 
-    public void setAuditoriums(Set<Auditorium> auditoriums) {
+    public void setAuditoriums(List<Auditorium> auditoriums) {
         this.auditoriums = auditoriums;
     }
 
