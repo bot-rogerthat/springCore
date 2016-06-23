@@ -17,7 +17,7 @@ public class DiscountAspect {
     @AfterReturning(pointcut = "execution(* spring.core.entity.discount.DiscountStrategy.apply(..))", returning = "discount")
     public void addCountByDiscountStrategy(JoinPoint joinPoint, BigDecimal discount) {
         String type = joinPoint.getTarget().getClass().getSimpleName();
-        if (!discount.equals(new BigDecimal(1.0))) {
+        if (!discount.equals(BigDecimal.ONE)) {
             int count = counterByDiscountStrategy.getOrDefault(type, 0);
             counterByDiscountStrategy.put(type, ++count);
         }
@@ -26,7 +26,7 @@ public class DiscountAspect {
     @AfterReturning(pointcut = "execution(* spring.core.service.DiscountService.getDiscount(..)) && args(user,..)",
             returning = "discount", argNames = "user,discount")
     public void addCountEventByName(User user, BigDecimal discount) {
-        if (!discount.equals(new BigDecimal(1.0))) {
+        if (!discount.equals(BigDecimal.ONE)) {
             int count = counterByUserDiscount.getOrDefault(user, 0);
             counterByUserDiscount.put(user, ++count);
         }
