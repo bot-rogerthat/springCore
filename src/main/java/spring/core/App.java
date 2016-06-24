@@ -14,6 +14,7 @@ public class App {
     private AuditoriumService auditoriumService;
     private BookingService bookingService;
     private DiscountService discountService;
+    private DiscountStatService discountStatService;
     private EventService eventService;
     private EventStatService eventStatService;
     private UserService userService;
@@ -55,16 +56,17 @@ public class App {
         app.getBookingService().create(ticket);
 
         //counters++
-        app.getBookingService().getTicketPrice(app.getEventService().getAllEvents().get(0), 25,
-                app.getUserService().getAllUsers().get(0));
+        app.getBookingService().getTicketPrice(app.getEventService().getAllEvents().get(0), 25, app.getUserService().getAllUsers().get(0));
         app.getBookingService().bookTicket(user, ticket);
         app.getEventService().getByName("warcraft");
+
 
         System.out.println(app.getAuditoriumService().getAllAuditoriums());
         System.out.println(app.getUserService().getAllUsers());
         System.out.println(app.getEventService().getAllEvents());
         System.out.println(app.getBookingService().getAllTickets());
         System.out.println(app.getEventStatService().getAllEventStats());
+        System.out.println(app.getDiscountStatService().getAllEventStats());
     }
 
 
@@ -114,5 +116,13 @@ public class App {
 
     public void setEventStatService(EventStatService eventStatService) {
         this.eventStatService = eventStatService;
+    }
+
+    public DiscountStatService getDiscountStatService() {
+        return discountStatService;
+    }
+
+    public void setDiscountStatService(DiscountStatService discountStatService) {
+        this.discountStatService = discountStatService;
     }
 }

@@ -8,6 +8,8 @@
     <bean id="counterAspect" class="spring.core.aop.CounterAspect">
         <property name="eventStatService" ref="eventStatService"/>
     </bean>
-    <bean id="discountAspect" class="spring.core.aop.DiscountAspect"/>
+    <bean id="discountAspect" class="spring.core.aop.DiscountAspect">
+        <property name="discountStatService" ref="discountStatService"/>
+    </bean>
     <bean id="luckyWinnerAspect" class="spring.core.aop.LuckyWinnerAspect"/>
 </beans>

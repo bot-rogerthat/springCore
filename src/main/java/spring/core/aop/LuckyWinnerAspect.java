@@ -15,7 +15,7 @@ import java.util.List;
 @Aspect
 public class LuckyWinnerAspect {
     private static final Logger log = LoggerFactory.getLogger(LuckyWinnerAspect.class);
-    private List<Object> luckyGuys = new ArrayList<>();
+    private final List<Object> luckyGuys = new ArrayList<>();
 
     @Around(value = "execution(* spring.core.service.BookingService.getTicketPrice(..)) && args(event, seat, user)",
             argNames = "joinPoint,user,seat,event")
