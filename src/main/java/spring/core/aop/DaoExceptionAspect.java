@@ -17,6 +17,6 @@ public class DaoExceptionAspect {
     @AfterThrowing(pointcut = "execution(* spring.core.dao.*.*(..))", throwing = "ex")
     public void afterThrowing(JoinPoint joinPoint, DataAccessException ex) throws DaoException {
         log.error("Thrown DataAccessException", joinPoint.getSignature() + Arrays.toString(joinPoint.getArgs()), ex);
-        throw new DaoException("Dao error" , ex);
+        throw new DaoException("Dao error", ex);
     }
 }

@@ -35,7 +35,7 @@ public class DiscountStatJdbcImpl implements DiscountStatDao {
     }
 
     @Override
-    public DiscountStat getById(int id) throws DaoException{
+    public DiscountStat getById(int id) throws DaoException {
         return jdbcTemplate.queryForObject("SELECT * FROM discount_stat WHERE id=?", new Object[]{id},
                 getDiscountStatRowMapper());
     }
@@ -46,7 +46,7 @@ public class DiscountStatJdbcImpl implements DiscountStatDao {
         return jdbcTemplate.query("SELECT * FROM discount_stat", getDiscountStatRowMapper());
     }
 
-    private RowMapper<DiscountStat> getDiscountStatRowMapper() throws DaoException{
+    private RowMapper<DiscountStat> getDiscountStatRowMapper() throws DaoException {
         return (rs, i) -> {
             DiscountStat discountStat = new DiscountStat();
             discountStat.setId(rs.getInt("id"));

@@ -17,7 +17,7 @@ public class AuditoriumService {
                 .getNumberOfSeats();
     }
 
-    public List<Integer> getVipSeats(int id) throws DaoException{
+    public List<Integer> getVipSeats(int id) throws DaoException {
         return auditoriumDao.getAllAuditoriums().stream()
                 .filter(auditorium -> id == auditorium.getId())
                 .findFirst()
@@ -25,11 +25,11 @@ public class AuditoriumService {
                 .getVips();
     }
 
-    public void create(Auditorium target) throws DaoException{
+    public void create(Auditorium target) throws DaoException {
         auditoriumDao.create(target);
     }
 
-    public void delete(int id) throws DaoException{
+    public void delete(int id) throws DaoException {
         auditoriumDao.delete(id);
     }
 

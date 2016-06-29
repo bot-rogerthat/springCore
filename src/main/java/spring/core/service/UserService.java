@@ -26,7 +26,7 @@ public class UserService {
                 .get();
     }
 
-    public User getUsersByName(String name) throws DaoException{
+    public User getUsersByName(String name) throws DaoException {
         List<User> users = userDao.getAllUsers();
         return users.stream()
                 .filter(user -> name.equalsIgnoreCase(user.getName()))
@@ -34,7 +34,7 @@ public class UserService {
                 .get();
     }
 
-    public List<Ticket> getBookedTickets(User target) throws DaoException{
+    public List<Ticket> getBookedTickets(User target) throws DaoException {
         List<User> users = userDao.getAllUsers();
         return users.stream()
                 .filter(user -> user.equals(target))
@@ -47,7 +47,7 @@ public class UserService {
         userDao.create(target);
     }
 
-    public List<User> getAllUsers() throws DaoException{
+    public List<User> getAllUsers() throws DaoException {
         return userDao.getAllUsers();
     }
 

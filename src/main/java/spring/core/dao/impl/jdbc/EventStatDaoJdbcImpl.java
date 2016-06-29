@@ -37,17 +37,17 @@ public class EventStatDaoJdbcImpl implements EventStatDao {
     }
 
     @Override
-    public EventStat getById(int id) throws DaoException{
+    public EventStat getById(int id) throws DaoException {
         return jdbcTemplate.queryForObject("SELECT * FROM event_stat WHERE id=?", new Object[]{id},
                 getEventStatRowMapper());
     }
 
     @Override
-    public List<EventStat> getAllEventStats() throws DaoException{
+    public List<EventStat> getAllEventStats() throws DaoException {
         return jdbcTemplate.query("SELECT * FROM event_stat", getEventStatRowMapper());
     }
 
-    private RowMapper<EventStat> getEventStatRowMapper() throws DaoException{
+    private RowMapper<EventStat> getEventStatRowMapper() throws DaoException {
         return (rs, i) -> {
             EventStat eventStat = new EventStat();
             eventStat.setId(rs.getInt("id"));

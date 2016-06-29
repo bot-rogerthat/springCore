@@ -53,7 +53,7 @@ public class EventController {
     }
 
     @RequestMapping(value = "/events/{id}/bookedTickets", method = RequestMethod.GET)
-    public ModelAndView getBookedTicketsForEvent(@PathVariable String id) throws DaoException{
+    public ModelAndView getBookedTicketsForEvent(@PathVariable String id) throws DaoException {
         ModelAndView model = new ModelAndView("bookedTickets");
         List<Ticket> bookedTickets = bookingService.getTicketsForEvent(eventService.getById(Integer.parseInt(id)));
         model.addObject("bookedTickets", bookedTickets);
@@ -61,7 +61,7 @@ public class EventController {
     }
 
     @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
-    public ModelAndView selectAuditorium(@PathVariable String id) throws DaoException{
+    public ModelAndView selectAuditorium(@PathVariable String id) throws DaoException {
         ModelAndView model = new ModelAndView("assign");
         model.addObject("id", id);
         model.addObject("auditoriums", auditoriumService.getAllAuditoriums());
@@ -72,7 +72,7 @@ public class EventController {
     public String assignAuditorium(@PathVariable String id,
                                    @ModelAttribute("auditorium") Auditorium auditorium,
                                    @RequestParam("date") Timestamp date,
-                                   @RequestParam("time") Time time) throws DaoException{
+                                   @RequestParam("time") Time time) throws DaoException {
         Event event = eventService.getById(Integer.parseInt(id));
         eventService.assignAuditorium(event, auditorium, date, time);
         return "redirect:/events";
@@ -87,19 +87,19 @@ public class EventController {
     }
 
     @RequestMapping(value = "/events/addEvent", method = RequestMethod.POST)
-    public String addEvent(@ModelAttribute("event") Event event) throws DaoException{
+    public String addEvent(@ModelAttribute("event") Event event) throws DaoException {
         eventService.create(event);
         return "redirect:/events";
     }
 
     @RequestMapping(value = "/events/deleteEvent/{id}", method = RequestMethod.GET)
-    public String deleteEvent(@PathVariable(value = "id") int id) throws DaoException{
+    public String deleteEvent(@PathVariable(value = "id") int id) throws DaoException {
         eventService.delete(id);
         return "redirect:/events";
     }
 
     @RequestMapping(value = "events/byEvent.pdf", headers = "Accept=application/pdf")
-    public ModelAndView getAllEventPdf() throws DaoException{
+    public ModelAndView getAllEventPdf() throws DaoException {
         List<Event> events = eventService.getAllEvents();
         ModelAndView mv = new ModelAndView("eventPdfView");
         mv.addObject("events", events);

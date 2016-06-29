@@ -30,18 +30,18 @@ public class BookingService {
         user.getTickets().add(ticket);
     }
 
-    public List<Ticket> getTicketsForEvent(Event event) throws DaoException{
+    public List<Ticket> getTicketsForEvent(Event event) throws DaoException {
         return ticketDao.getAllTickets().stream()
                 .filter(ticket -> event.getId() == ticket.getEventId())
                 .filter(Ticket::isBooked)
                 .collect(Collectors.toList());
     }
 
-    public void create(Ticket target) throws DaoException{
+    public void create(Ticket target) throws DaoException {
         ticketDao.create(target);
     }
 
-    public List<Ticket> getAllTickets() throws DaoException{
+    public List<Ticket> getAllTickets() throws DaoException {
         return ticketDao.getAllTickets();
     }
 

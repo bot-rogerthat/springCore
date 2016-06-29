@@ -25,7 +25,7 @@ public class EventStatService {
     }
 
 
-    private EventStat getEventStatByEvent(Event target) throws DaoException{
+    private EventStat getEventStatByEvent(Event target) throws DaoException {
         return eventStatDao.getAllEventStats().stream()
                 .filter(es -> es.getEventId() == target.getId())
                 .findFirst()

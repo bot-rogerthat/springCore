@@ -29,26 +29,26 @@ public class AuditoriumController {
     }
 
     @RequestMapping(value = "/auditoriums/addAuditorium", method = RequestMethod.GET)
-    public String viewAddAuditorium(ModelMap model) throws DaoException{
+    public String viewAddAuditorium(ModelMap model) throws DaoException {
         Auditorium auditorium = new Auditorium();
         model.put("auditorium", auditorium);
         return "addAuditorium";
     }
 
     @RequestMapping(value = "/auditoriums/addAuditorium", method = RequestMethod.POST)
-    public String addAuditorium(@ModelAttribute("auditorium") Auditorium auditorium) throws DaoException{
+    public String addAuditorium(@ModelAttribute("auditorium") Auditorium auditorium) throws DaoException {
         auditoriumService.create(auditorium);
         return "redirect:/auditoriums";
     }
 
     @RequestMapping(value = "/auditoriums/deleteAuditorium/{id}", method = RequestMethod.GET)
-    public String deleteAuditorium(@PathVariable(value = "id") int id) throws DaoException{
+    public String deleteAuditorium(@PathVariable(value = "id") int id) throws DaoException {
         auditoriumService.delete(id);
         return "redirect:/auditoriums";
     }
 
     @RequestMapping(value = "auditoriums/byAuditorium.pdf", headers = "Accept=application/pdf")
-    public ModelAndView getAllAuditoriumPdf() throws DaoException{
+    public ModelAndView getAllAuditoriumPdf() throws DaoException {
         List<Auditorium> auditoriums = auditoriumService.getAllAuditoriums();
         ModelAndView mv = new ModelAndView("auditoriumPdfView");
         mv.addObject("auditoriums", auditoriums);

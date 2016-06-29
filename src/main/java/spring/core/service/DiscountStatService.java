@@ -27,7 +27,7 @@ public class DiscountStatService {
     }
 
 
-    private DiscountStat getDiscountStatByUserAndDiscountName(User target, String discountName) throws DaoException{
+    private DiscountStat getDiscountStatByUserAndDiscountName(User target, String discountName) throws DaoException {
         return discountStatDao.getAllDiscountStats().stream()
                 .filter(ds -> ds.getUserId() == target.getId())
                 .filter(ds -> ds.getDiscountName().equals(discountName))

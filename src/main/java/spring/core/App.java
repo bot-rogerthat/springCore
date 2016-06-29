@@ -3,7 +3,6 @@ package spring.core;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import spring.core.dao.impl.jdbc.DaoException;
-import spring.core.entity.User;
 import spring.core.service.*;
 
 public class App {

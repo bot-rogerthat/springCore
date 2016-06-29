@@ -22,14 +22,14 @@ public class CounterAspect {
     }
 
     @AfterReturning("execution(* spring.core.service.BookingService.getTicketPrice(..)) && args(event, ..)")
-    public void addCountEventGetTicketPrice(Event event) throws DaoException{
+    public void addCountEventGetTicketPrice(Event event) throws DaoException {
         EventStat eventStat = eventStatService.getEventStat(event);
         eventStat.setCountByEventPrice(eventStat.getCountByEventPrice() + 1);
         eventStatService.updateStat(eventStat);
     }
 
     @AfterReturning("execution(* spring.core.service.BookingService.bookTicket(..)) && args(.., ticket)")
-    public void addCountTicketBooked(Ticket ticket) throws DaoException{
+    public void addCountTicketBooked(Ticket ticket) throws DaoException {
         EventStat eventStat = eventStatService.getEventStat(eventDao.getById(ticket.getEventId()));
         eventStat.setCountByTicketBooked(eventStat.getCountByTicketBooked() + 1);
         eventStatService.updateStat(eventStat);
