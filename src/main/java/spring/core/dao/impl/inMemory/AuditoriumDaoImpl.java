@@ -1,4 +1,4 @@
-package spring.core.dao.impl.inMemory;
+package spring.core.dao.impl.inmemory;
 
 import spring.core.dao.AuditoriumDao;
 import spring.core.entity.Auditorium;

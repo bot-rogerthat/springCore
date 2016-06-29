@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 
 public class TimePropertyEditor extends PropertyEditorSupport {
     private static final Logger log = LoggerFactory.getLogger(TimePropertyEditor.class);
-    public static final String DEFAULT_BATCH_PATTERN = "hh:mm";
+    private static final String DEFAULT_BATCH_PATTERN = "hh:mm";
     private final SimpleDateFormat sdf;
 
     public TimePropertyEditor() {

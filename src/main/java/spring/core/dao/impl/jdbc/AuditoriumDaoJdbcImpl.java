@@ -67,7 +67,7 @@ public class AuditoriumDaoJdbcImpl implements AuditoriumDao {
                 (rs, rowNum) -> rs.getInt("seat_number"));
     }
 
-    private void createVipSeats(Auditorium target, int id){
+    private void createVipSeats(Auditorium target, int id) {
         target.getVips().stream().forEach(vipSeat ->
                 jdbcTemplate.update("INSERT INTO vip_seat(auditorium_id, seat_number) VALUES(?,?)", id, vipSeat));
     }
