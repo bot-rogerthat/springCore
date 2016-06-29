@@ -1,5 +1,6 @@
 package spring.core.dao.impl.jdbc;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import spring.core.dao.UserDao;
@@ -12,7 +13,7 @@ public class UserDaoJdbcImpl implements UserDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void create(User target) {
+    public void create(User target) throws DaoException{
         jdbcTemplate.update("INSERT INTO user_ (name, email, day_of_birth) VALUES(?,?,?)",
                 target.getName(),
                 target.getEmail(),

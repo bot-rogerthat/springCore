@@ -15,7 +15,7 @@ public class EventStatDaoJdbcImpl implements EventStatDao {
     @Override
     public void create(EventStat target) {
         jdbcTemplate.update("INSERT INTO event_stat(event_id, count_by_event_name, count_by_event_price, count_by_ticket_booked ) VALUES(?,?,?,?)",
-                target.getEvent().getId(),
+                target.getEventId(),
                 target.getCountByEventName(),
                 target.getCountByEventPrice(),
                 target.getCountByTicketBooked());
@@ -24,7 +24,7 @@ public class EventStatDaoJdbcImpl implements EventStatDao {
     @Override
     public void update(EventStat target) {
         jdbcTemplate.update("UPDATE event_stat SET event_id=?, count_by_event_name=?, count_by_event_price=?, count_by_ticket_booked=? WHERE id=?",
-                target.getEvent().getId(),
+                target.getEventId(),
                 target.getCountByEventName(),
                 target.getCountByEventPrice(),
                 target.getCountByTicketBooked(),
@@ -37,21 +37,21 @@ public class EventStatDaoJdbcImpl implements EventStatDao {
     }
 
     @Override
-    public EventStat getById(int id) {
+    public EventStat getById(int id) throws DaoException{
         return jdbcTemplate.queryForObject("SELECT * FROM event_stat WHERE id=?", new Object[]{id},
                 getEventStatRowMapper());
     }
 
     @Override
-    public List<EventStat> getAllEventStats() {
+    public List<EventStat> getAllEventStats() throws DaoException{
         return jdbcTemplate.query("SELECT * FROM event_stat", getEventStatRowMapper());
     }
 
-    private RowMapper<EventStat> getEventStatRowMapper() {
+    private RowMapper<EventStat> getEventStatRowMapper() throws DaoException{
         return (rs, i) -> {
             EventStat eventStat = new EventStat();
             eventStat.setId(rs.getInt("id"));
-            eventStat.setEvent(eventDao.getById(rs.getInt("event_id")));
+            eventStat.setEventId(rs.getInt("event_id"));
             eventStat.setCountByEventName(rs.getInt("count_by_event_name"));
             eventStat.setCountByEventPrice(rs.getInt("count_by_event_price"));
             eventStat.setCountByTicketBooked(rs.getInt("count_by_ticket_booked"));

@@ -1,6 +1,7 @@
 package spring.core.service;
 
 import spring.core.dao.TicketDao;
+import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Event;
 import spring.core.entity.Ticket;
 import spring.core.entity.User;
@@ -16,7 +17,7 @@ public class BookingService {
     private DiscountService discountService;
     private AuditoriumService auditoriumService;
 
-    public BigDecimal getTicketPrice(Event event, Integer seat, User user) {
+    public BigDecimal getTicketPrice(Event event, Integer seat, User user) throws DaoException {
         BigDecimal discount = discountService.getDiscount(user, event);
         boolean isVip = auditoriumService.getVipSeats(event.getAuditoriumId()).contains(seat);
         BigDecimal price = event.getPrice().add(isVip ? VIP_MARKUP : BigDecimal.ZERO);
@@ -29,18 +30,18 @@ public class BookingService {
         user.getTickets().add(ticket);
     }
 
-    public List<Ticket> getTicketsForEvent(Event event) {
+    public List<Ticket> getTicketsForEvent(Event event) throws DaoException{
         return ticketDao.getAllTickets().stream()
                 .filter(ticket -> event.getId() == ticket.getEventId())
                 .filter(Ticket::isBooked)
                 .collect(Collectors.toList());
     }
 
-    public void create(Ticket target) {
+    public void create(Ticket target) throws DaoException{
         ticketDao.create(target);
     }
 
-    public List<Ticket> getAllTickets() {
+    public List<Ticket> getAllTickets() throws DaoException{
         return ticketDao.getAllTickets();
     }
 

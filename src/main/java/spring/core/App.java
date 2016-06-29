@@ -2,6 +2,8 @@ package spring.core;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import spring.core.dao.impl.jdbc.DaoException;
+import spring.core.entity.User;
 import spring.core.service.*;
 
 public class App {
@@ -13,7 +15,7 @@ public class App {
     private EventStatService eventStatService;
     private UserService userService;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DaoException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/main.xml");
         App app = ctx.getBean("app", App.class);
 //        Auditorium auditorium = new Auditorium();

@@ -13,4 +13,5 @@
         <property name="discountStatService" ref="discountStatService"/>
     </bean>
     <bean id="luckyWinnerAspect" class="spring.core.aop.LuckyWinnerAspect"/>
+    <bean id="daoExceptionAspect" class="spring.core.aop.DaoExceptionAspect"/>
 </beans>

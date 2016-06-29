@@ -1,17 +1,18 @@
 package spring.core.dao;
 
+import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.DiscountStat;
 
 import java.util.List;
 
 public interface DiscountStatDao {
-    void create(DiscountStat target);
+    void create(DiscountStat target) throws DaoException;
 
-    void update(DiscountStat target);
+    void update(DiscountStat target) throws DaoException;
 
-    void delete(int id);
+    void delete(int id) throws DaoException;
 
-    DiscountStat getById(int id);
+    DiscountStat getById(int id) throws DaoException;
 
-    List<DiscountStat> getAllDiscountStats();
+    List<DiscountStat> getAllDiscountStats() throws DaoException;
 }

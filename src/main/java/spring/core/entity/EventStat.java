@@ -2,7 +2,7 @@ package spring.core.entity;
 
 public class EventStat {
     private int id;
-    private Event event;
+    private int eventId;
     private int countByEventName;
     private int countByEventPrice;
     private int countByTicketBooked;
@@ -15,12 +15,12 @@ public class EventStat {
         this.id = id;
     }
 
-    public Event getEvent() {
-        return event;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public int getCountByEventName() {
@@ -71,7 +71,7 @@ public class EventStat {
     public String toString() {
         return "EventStat{" +
                 "id=" + id +
-                ", event=" + event +
+                ", eventId=" + eventId +
                 ", countByEventName=" + countByEventName +
                 ", countByEventPrice=" + countByEventPrice +
                 ", countByTicketBooked=" + countByTicketBooked +

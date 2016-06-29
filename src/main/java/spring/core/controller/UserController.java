@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Ticket;
 import spring.core.entity.User;
 import spring.core.service.UserService;
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView getAllUsers() {
+    public ModelAndView getAllUsers() throws DaoException{
         ModelAndView model = new ModelAndView("users");
         List<User> users = userService.getAllUsers();
         model.addObject("users", users);
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public ModelAndView getUserById(@PathVariable String id) {
+    public ModelAndView getUserById(@PathVariable String id) throws DaoException{
         ModelAndView model = new ModelAndView("user");
         User user = userService.getById(Integer.parseInt(id));
         model.addObject("user", user);
@@ -42,7 +43,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/{id}/tickets", method = RequestMethod.GET)
-    public ModelAndView getBookedTickets(@PathVariable String id) {
+    public ModelAndView getBookedTickets(@PathVariable String id) throws DaoException{
         ModelAndView model = new ModelAndView("tickets");
         User user = userService.getById(Integer.parseInt(id));
         List<Ticket> tickets = userService.getBookedTickets(user);
@@ -58,19 +59,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/addUser", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUser(@ModelAttribute("user") User user) throws DaoException {
         userService.create(user);
         return "redirect:/users";
     }
 
     @RequestMapping(value = "/users/deleteUser/{id}", method = RequestMethod.GET)
-    public String deleteUser(@PathVariable(value = "id") int id) {
+    public String deleteUser(@PathVariable(value = "id") int id) throws DaoException{
         userService.delete(id);
         return "redirect:/users";
     }
 
     @RequestMapping(value = "users/byUser.pdf", headers = "Accept=application/pdf")
-    public ModelAndView getAllUserPdf() {
+    public ModelAndView getAllUserPdf() throws DaoException{
         List<User> users = userService.getAllUsers();
         ModelAndView mv = new ModelAndView("userPdfView");
         mv.addObject("users", users);

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Auditorium;
 import spring.core.entity.Event;
 import spring.core.entity.User;
@@ -29,7 +30,7 @@ public class UploadController {
     AuditoriumService auditoriumService;
 
     @RequestMapping(value = "upload/users", method = RequestMethod.POST)
-    public String uploadUsers(@RequestParam(value = "file", required = false) MultipartFile multipart) throws IOException {
+    public String uploadUsers(@RequestParam(value = "file", required = false) MultipartFile multipart) throws IOException, DaoException {
         User[] users = JsonUtil.getEntities(JsonUtil.parseFile(multipart), User[].class);
         for (User user : users) {
             userService.create(user);
@@ -38,7 +39,7 @@ public class UploadController {
     }
 
     @RequestMapping(value = "upload/events", method = RequestMethod.POST)
-    public String uploadEvents(@RequestParam(value = "file", required = false) MultipartFile multipart) throws IOException {
+    public String uploadEvents(@RequestParam(value = "file", required = false) MultipartFile multipart) throws IOException, DaoException {
         Event[] events = JsonUtil.getEntities(JsonUtil.parseFile(multipart), Event[].class);
         for (Event event : events) {
             eventService.create(event);
@@ -47,7 +48,7 @@ public class UploadController {
     }
 
     @RequestMapping(value = "upload/auditoriums", method = RequestMethod.POST)
-    public String uploadAuditoriums(@RequestParam(value = "file", required = false) MultipartFile multipart) throws IOException {
+    public String uploadAuditoriums(@RequestParam(value = "file", required = false) MultipartFile multipart) throws IOException, DaoException {
         Auditorium[] auditoriums = JsonUtil.getEntities(JsonUtil.parseFile(multipart), Auditorium[].class);
         for (Auditorium auditorium : auditoriums) {
             auditoriumService.create(auditorium);

@@ -15,7 +15,7 @@ public class DiscountStatJdbcImpl implements DiscountStatDao {
     @Override
     public void create(DiscountStat target) {
         jdbcTemplate.update("INSERT INTO discount_stat(user_id, discount_name, count) VALUES(?,?,?)",
-                target.getUser().getId(),
+                target.getUserId(),
                 target.getDiscountName(),
                 target.getCount());
     }
@@ -23,7 +23,7 @@ public class DiscountStatJdbcImpl implements DiscountStatDao {
     @Override
     public void update(DiscountStat target) {
         jdbcTemplate.update("UPDATE discount_stat SET user_id=?, discount_name=?, count=? WHERE id=?",
-                target.getUser().getId(),
+                target.getUserId(),
                 target.getDiscountName(),
                 target.getCount(),
                 target.getId());
@@ -35,22 +35,22 @@ public class DiscountStatJdbcImpl implements DiscountStatDao {
     }
 
     @Override
-    public DiscountStat getById(int id) {
+    public DiscountStat getById(int id) throws DaoException{
         return jdbcTemplate.queryForObject("SELECT * FROM discount_stat WHERE id=?", new Object[]{id},
                 getDiscountStatRowMapper());
     }
 
 
     @Override
-    public List<DiscountStat> getAllDiscountStats() {
+    public List<DiscountStat> getAllDiscountStats() throws DaoException {
         return jdbcTemplate.query("SELECT * FROM discount_stat", getDiscountStatRowMapper());
     }
 
-    private RowMapper<DiscountStat> getDiscountStatRowMapper() {
+    private RowMapper<DiscountStat> getDiscountStatRowMapper() throws DaoException{
         return (rs, i) -> {
             DiscountStat discountStat = new DiscountStat();
             discountStat.setId(rs.getInt("id"));
-            discountStat.setUser(userDao.getById(rs.getInt("user_id")));
+            discountStat.setUserId(rs.getInt("user_id"));
             discountStat.setDiscountName(rs.getString("discount_name"));
             discountStat.setCount(rs.getInt("count"));
             return discountStat;

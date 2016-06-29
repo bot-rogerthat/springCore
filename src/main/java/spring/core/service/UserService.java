@@ -1,6 +1,7 @@
 package spring.core.service;
 
 import spring.core.dao.UserDao;
+import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Ticket;
 import spring.core.entity.User;
 
@@ -9,15 +10,15 @@ import java.util.List;
 public class UserService {
     private UserDao userDao;
 
-    public void delete(int id) {
+    public void delete(int id) throws DaoException {
         userDao.delete(id);
     }
 
-    public User getById(int id) {
+    public User getById(int id) throws DaoException {
         return userDao.getById(id);
     }
 
-    public User getUserByEmail(String email) {
+    public User getUserByEmail(String email) throws DaoException {
         List<User> users = userDao.getAllUsers();
         return users.stream()
                 .filter(user -> email.equalsIgnoreCase(user.getEmail()))
@@ -25,7 +26,7 @@ public class UserService {
                 .get();
     }
 
-    public User getUsersByName(String name) {
+    public User getUsersByName(String name) throws DaoException{
         List<User> users = userDao.getAllUsers();
         return users.stream()
                 .filter(user -> name.equalsIgnoreCase(user.getName()))
@@ -33,7 +34,7 @@ public class UserService {
                 .get();
     }
 
-    public List<Ticket> getBookedTickets(User target) {
+    public List<Ticket> getBookedTickets(User target) throws DaoException{
         List<User> users = userDao.getAllUsers();
         return users.stream()
                 .filter(user -> user.equals(target))
@@ -42,11 +43,11 @@ public class UserService {
                 .getTickets();
     }
 
-    public void create(User target) {
+    public void create(User target) throws DaoException {
         userDao.create(target);
     }
 
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers() throws DaoException{
         return userDao.getAllUsers();
     }
 
