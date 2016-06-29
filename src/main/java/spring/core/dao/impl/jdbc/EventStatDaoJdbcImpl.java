@@ -32,8 +32,8 @@ public class EventStatDaoJdbcImpl implements EventStatDao {
     }
 
     @Override
-    public void delete(EventStat target) {
-        jdbcTemplate.update("DELETE FROM event_stat WHERE id=?", target.getId());
+    public void delete(int id) {
+        jdbcTemplate.update("DELETE FROM event_stat WHERE id=?", id);
     }
 
     @Override

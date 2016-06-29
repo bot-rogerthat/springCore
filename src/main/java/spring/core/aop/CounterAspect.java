@@ -2,6 +2,7 @@ package spring.core.aop;
 
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import spring.core.dao.EventDao;
 import spring.core.entity.Event;
 import spring.core.entity.EventStat;
 import spring.core.entity.Ticket;
@@ -10,6 +11,7 @@ import spring.core.service.EventStatService;
 @Aspect
 public class CounterAspect {
     private EventStatService eventStatService;
+    private EventDao eventDao;
 
     @AfterReturning(pointcut = "execution(* spring.core.service.EventService.getByName(..))", returning = "event")
     public void addCountEventByName(Event event) {
@@ -27,7 +29,7 @@ public class CounterAspect {
 
     @AfterReturning("execution(* spring.core.service.BookingService.bookTicket(..)) && args(.., ticket)")
     public void addCountTicketBooked(Ticket ticket) {
-        EventStat eventStat = eventStatService.getEventStat(ticket.getEvent());
+        EventStat eventStat = eventStatService.getEventStat(eventDao.getById(ticket.getEventId()));
         eventStat.setCountByTicketBooked(eventStat.getCountByTicketBooked() + 1);
         eventStatService.updateStat(eventStat);
     }
@@ -38,5 +40,9 @@ public class CounterAspect {
 
     public void setEventStatService(EventStatService eventStatService) {
         this.eventStatService = eventStatService;
+    }
+
+    public void setEventDao(EventDao eventDao) {
+        this.eventDao = eventDao;
     }
 }

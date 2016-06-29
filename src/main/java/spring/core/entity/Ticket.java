@@ -3,9 +3,9 @@ package spring.core.entity;
 public class Ticket {
     private int id;
     private Integer seat;
-    private boolean isBooked;
-    private Event event;
-    private User user;
+    private boolean booked;
+    private int eventId;
+    private int userId;
 
     public int getId() {
         return id;
@@ -24,27 +24,27 @@ public class Ticket {
     }
 
     public boolean isBooked() {
-        return isBooked;
+        return booked;
     }
 
     public void setBooked(boolean booked) {
-        isBooked = booked;
+        this.booked = booked;
     }
 
-    public Event getEvent() {
-        return event;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -52,9 +52,9 @@ public class Ticket {
         return "Ticket{" +
                 "id='" + id + '\'' +
                 ", seat='" + seat + '\'' +
-                ", isBooked=" + isBooked +
-                ", event=" + event +
-                ", user=" + user +
+                ", booked=" + booked +
+                ", eventId=" + eventId +
+                ", userId=" + userId +
                 '}';
     }
 

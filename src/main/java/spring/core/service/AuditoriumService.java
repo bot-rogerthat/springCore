@@ -8,10 +8,6 @@ import java.util.List;
 public class AuditoriumService {
     private AuditoriumDao auditoriumDao;
 
-    public List<Auditorium> getAuditoriums() {
-        return auditoriumDao.getAllAuditoriums();
-    }
-
     public int getSeatsNumber(String name) {
         return auditoriumDao.getAllAuditoriums().stream()
                 .filter(auditorium -> name.equalsIgnoreCase(auditorium.getName()))
@@ -20,9 +16,9 @@ public class AuditoriumService {
                 .getNumberOfSeats();
     }
 
-    public List<Integer> getVipSeats(String name) {
+    public List<Integer> getVipSeats(int id) {
         return auditoriumDao.getAllAuditoriums().stream()
-                .filter(auditorium -> name.equalsIgnoreCase(auditorium.getName()))
+                .filter(auditorium -> id == auditorium.getId())
                 .findFirst()
                 .get()
                 .getVips();
@@ -30,6 +26,10 @@ public class AuditoriumService {
 
     public void create(Auditorium target) {
         auditoriumDao.create(target);
+    }
+
+    public void delete(int id) {
+        auditoriumDao.delete(id);
     }
 
     public List<Auditorium> getAllAuditoriums() {

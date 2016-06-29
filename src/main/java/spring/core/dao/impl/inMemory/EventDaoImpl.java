@@ -1,4 +1,4 @@
-package spring.core.dao.impl.inmemory;
+package spring.core.dao.impl.inMemory;
 
 import spring.core.dao.EventDao;
 import spring.core.entity.Event;
@@ -20,10 +20,11 @@ public class EventDaoImpl implements EventDao {
         }
     }
 
-    public void delete(Event target) {
-        if (events.contains(target)) {
-            events.remove(target);
-        }
+    public void delete(int id) {
+        events.remove(events.stream()
+                .filter(event -> event.getId() == id)
+                .findFirst()
+                .get());
     }
 
     public Event getById(int id) {

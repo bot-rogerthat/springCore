@@ -1,4 +1,4 @@
-package spring.core.dao.impl.inmemory;
+package spring.core.dao.impl.inMemory;
 
 import spring.core.dao.TicketDao;
 import spring.core.entity.Ticket;
@@ -20,10 +20,11 @@ public class TicketDaoImpl implements TicketDao {
         }
     }
 
-    public void delete(Ticket target) {
-        if (tickets.contains(target)) {
-            tickets.remove(target);
-        }
+    public void delete(int id) {
+        tickets.remove(tickets.stream()
+                .filter(ticket -> ticket.getId() == id)
+                .findFirst()
+                .get());
     }
 
     public Ticket getById(int id) {

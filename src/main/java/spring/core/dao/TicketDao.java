@@ -9,7 +9,7 @@ public interface TicketDao {
 
     void update(Ticket target);
 
-    void delete(Ticket target);
+    void delete(int id);
 
     Ticket getById(int id);
 

@@ -9,12 +9,8 @@ import java.util.List;
 public class UserService {
     private UserDao userDao;
 
-    public void register(User target) {
-        userDao.create(target);
-    }
-
-    public void remove(User target) {
-        userDao.delete(target);
+    public void delete(int id) {
+        userDao.delete(id);
     }
 
     public User getById(int id) {
@@ -37,10 +33,10 @@ public class UserService {
                 .get();
     }
 
-    public List<Ticket> getBookedTickets(String name) {
+    public List<Ticket> getBookedTickets(User target) {
         List<User> users = userDao.getAllUsers();
         return users.stream()
-                .filter(user -> name.equalsIgnoreCase(user.getName()))
+                .filter(user -> user.equals(target))
                 .findFirst()
                 .get()
                 .getTickets();

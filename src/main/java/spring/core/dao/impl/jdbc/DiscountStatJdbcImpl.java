@@ -30,8 +30,8 @@ public class DiscountStatJdbcImpl implements DiscountStatDao {
     }
 
     @Override
-    public void delete(DiscountStat target) {
-        jdbcTemplate.update("DELETE FROM discount_stat WHERE id=?", target.getId());
+    public void delete(int id) {
+        jdbcTemplate.update("DELETE FROM discount_stat WHERE id=?", id);
     }
 
     @Override

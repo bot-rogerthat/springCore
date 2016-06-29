@@ -9,7 +9,7 @@ public interface DiscountStatDao {
 
     void update(DiscountStat target);
 
-    void delete(DiscountStat target);
+    void delete(int id);
 
     DiscountStat getById(int id);
 

@@ -11,7 +11,7 @@ public class Event {
     private Time time;
     private BigDecimal price;
     private Rating rating;
-    private Auditorium auditorium;
+    private int auditoriumId;
 
     public int getId() {
         return id;
@@ -61,12 +61,12 @@ public class Event {
         this.rating = rating;
     }
 
-    public Auditorium getAuditorium() {
-        return auditorium;
+    public int getAuditoriumId() {
+        return auditoriumId;
     }
 
-    public void setAuditorium(Auditorium auditorium) {
-        this.auditorium = auditorium;
+    public void setAuditoriumId(int auditoriumId) {
+        this.auditoriumId = auditoriumId;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Event {
                 ", time=" + time +
                 ", price=" + price +
                 ", rating=" + rating +
-                ", auditorium=" + auditorium +
+                ", auditoriumId=" + auditoriumId +
                 '}';
     }
 }

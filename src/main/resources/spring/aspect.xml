@@ -7,6 +7,7 @@
     <aop:aspectj-autoproxy/>
     <bean id="counterAspect" class="spring.core.aop.CounterAspect">
         <property name="eventStatService" ref="eventStatService"/>
+        <property name="eventDao" ref="eventDao"/>
     </bean>
     <bean id="discountAspect" class="spring.core.aop.DiscountAspect">
         <property name="discountStatService" ref="discountStatService"/>

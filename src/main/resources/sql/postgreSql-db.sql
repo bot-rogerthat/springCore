@@ -76,6 +76,18 @@ CREATE SEQUENCE public.event_stat_id_seq
 ALTER TABLE public.event_stat_id_seq
   OWNER TO postgres;
 
+-- Sequence: discount_stat_id_seq
+
+-- DROP SEQUENCE discount_stat_id_seq;
+
+CREATE SEQUENCE discount_stat_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE discount_stat_id_seq
+  OWNER TO postgres;
 
 -- Table: public.user_
 
@@ -196,4 +208,22 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.event_stat
+  OWNER TO postgres;
+
+-- Table: discount_stat
+
+-- DROP TABLE discount_stat;
+
+CREATE TABLE discount_stat
+(
+  id serial NOT NULL,
+  user_id bigint,
+  discount_name character varying(255),
+  count bigint,
+  CONSTRAINT pk_discount_stat_id PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE discount_stat
   OWNER TO postgres;

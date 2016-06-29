@@ -9,7 +9,7 @@ public interface AuditoriumDao {
 
     void update(Auditorium target);
 
-    void delete(Auditorium target);
+    void delete(int id);
 
     Auditorium getById(int id);
 

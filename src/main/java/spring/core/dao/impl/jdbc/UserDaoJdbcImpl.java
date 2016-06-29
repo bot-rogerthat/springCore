@@ -3,6 +3,7 @@ package spring.core.dao.impl.jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import spring.core.dao.UserDao;
+import spring.core.entity.Ticket;
 import spring.core.entity.User;
 
 import java.util.List;
@@ -32,8 +33,8 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     @Override
-    public void delete(User target) {
-        jdbcTemplate.update("DELETE FROM user_ WHERE ID=?", target.getId());
+    public void delete(int id) {
+        jdbcTemplate.update("DELETE FROM user_ WHERE id=?", id);
     }
 
     @Override
@@ -54,7 +55,25 @@ public class UserDaoJdbcImpl implements UserDao {
             user.setName(rs.getString("name"));
             user.setEmail(rs.getString("email"));
             user.setDayOfBirth(rs.getTimestamp("day_of_birth"));
+            user.setTickets(getTicketsForUserById(rs.getInt("id")));
             return user;
+        };
+    }
+
+    private List<Ticket> getTicketsForUserById(int id) {
+        return jdbcTemplate.query("SELECT * FROM ticket WHERE user_id=?", new Object[]{id},
+                getTicketRowMapper());
+    }
+
+    private RowMapper<Ticket> getTicketRowMapper() {
+        return (rs, i) -> {
+            Ticket ticket = new Ticket();
+            ticket.setId(rs.getInt("id"));
+            ticket.setSeat(rs.getInt("seat"));
+            ticket.setBooked(rs.getBoolean("is_booked"));
+            ticket.setEventId(rs.getInt("event_id"));
+            ticket.setUserId(rs.getInt("user_id"));
+            return ticket;
         };
     }
 

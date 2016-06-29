@@ -9,7 +9,7 @@ public interface EventDao {
 
     void update(Event target);
 
-    void delete(Event target);
+    void delete(int id);
 
     Event getById(int id);
 

@@ -21,7 +21,7 @@ public class EventDaoJdbcImpl implements EventDao {
                 target.getTime(),
                 target.getPrice(),
                 target.getRating().toString(),
-                target.getAuditorium().getId());
+                target.getAuditoriumId());
     }
 
     @Override
@@ -32,13 +32,13 @@ public class EventDaoJdbcImpl implements EventDao {
                 target.getTime(),
                 target.getPrice(),
                 target.getRating().toString(),
-                target.getAuditorium().getId(),
+                target.getAuditoriumId(),
                 target.getId());
     }
 
     @Override
-    public void delete(Event target) {
-        jdbcTemplate.update("DELETE FROM event WHERE id=?", target.getId());
+    public void delete(int id) {
+        jdbcTemplate.update("DELETE FROM event WHERE id=?", id);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class EventDaoJdbcImpl implements EventDao {
             event.setTime(rs.getTime("time"));
             event.setPrice(rs.getBigDecimal("price"));
             event.setRating(Rating.valueOf(rs.getString("rating")));
-            event.setAuditorium(auditoriumDao.getById(rs.getInt("auditorium_id")));
+            event.setAuditoriumId(rs.getInt("auditorium_id"));
             return event;
         };
     }

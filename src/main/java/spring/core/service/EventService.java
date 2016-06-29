@@ -15,8 +15,8 @@ public class EventService {
         eventDao.create(target);
     }
 
-    public void remove(Event target) {
-        eventDao.delete(target);
+    public void delete(int id) {
+        eventDao.delete(id);
     }
 
     public Event getByName(String name) {
@@ -31,10 +31,15 @@ public class EventService {
         return eventDao.getAllEvents();
     }
 
+    public Event getById(int id) {
+        return eventDao.getById(id);
+    }
+
     public void assignAuditorium(Event event, Auditorium auditorium, Timestamp date, Time time) {
-        event.setAuditorium(auditorium);
+        event.setAuditoriumId(auditorium.getId());
         event.setDate(date);
         event.setTime(time);
+        eventDao.update(event);
     }
 
     public List<Event> getAllEvents() {

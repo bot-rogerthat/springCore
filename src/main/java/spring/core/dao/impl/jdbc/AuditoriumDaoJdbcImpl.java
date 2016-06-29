@@ -34,8 +34,8 @@ public class AuditoriumDaoJdbcImpl implements AuditoriumDao {
     }
 
     @Override
-    public void delete(Auditorium target) {
-        jdbcTemplate.update("DELETE FROM auditorium WHERE id = ?", target.getId());
+    public void delete(int id) {
+        jdbcTemplate.update("DELETE FROM auditorium WHERE id = ?", id);
     }
 
     @Override

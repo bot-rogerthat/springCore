@@ -2,13 +2,7 @@ package spring.core;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import spring.core.entity.*;
 import spring.core.service.*;
-
-import java.math.BigDecimal;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Arrays;
 
 public class App {
     private AuditoriumService auditoriumService;
@@ -22,51 +16,50 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/main.xml");
         App app = ctx.getBean("app", App.class);
-
-        Auditorium auditorium = new Auditorium();
-        auditorium.setName("gr45Hall");
-        auditorium.setNumberOfSeats(50);
-        auditorium.setVips(Arrays.asList(1, 2, 3, 4));
-
-        app.getAuditoriumService().create(auditorium);
-
-        User user = new User();
-        user.setName("vasya");
-        user.setEmail("vasya@mail.ru");
-        user.setDayOfBirth(Timestamp.valueOf("2016-05-27 00:00:00"));
-
-        app.getUserService().create(user);
-
-        Event event = new Event();
-        event.setName("warcraft");
-        event.setDate(Timestamp.valueOf("2016-05-27 00:00:00"));
-        event.setTime(Time.valueOf("19:20:00"));
-        event.setPrice(new BigDecimal(300));
-        event.setRating(Rating.MID);
-        event.setAuditorium(app.getAuditoriumService().getAllAuditoriums().get(0));
-
-        app.getEventService().create(event);
-
-        Ticket ticket = new Ticket();
-        ticket.setSeat(25);
-        ticket.setEvent(app.getEventService().getAllEvents().get(0));
-        ticket.setBooked(true);
-        ticket.setUser(app.getUserService().getAllUsers().get(0));
-
-        app.getBookingService().create(ticket);
-
-        //counters++
-        app.getBookingService().getTicketPrice(app.getEventService().getAllEvents().get(0), 25, app.getUserService().getAllUsers().get(0));
-        app.getBookingService().bookTicket(user, ticket);
-        app.getEventService().getByName("warcraft");
-
-
-        System.out.println(app.getAuditoriumService().getAllAuditoriums());
-        System.out.println(app.getUserService().getAllUsers());
-        System.out.println(app.getEventService().getAllEvents());
-        System.out.println(app.getBookingService().getAllTickets());
-        System.out.println(app.getEventStatService().getAllEventStats());
-        System.out.println(app.getDiscountStatService().getAllEventStats());
+//        Auditorium auditorium = new Auditorium();
+//        auditorium.setName("gr45Hall");
+//        auditorium.setNumberOfSeats(50);
+//        auditorium.setVips(Arrays.asList(1, 2, 3, 4));
+//
+//        app.getAuditoriumService().create(auditorium);
+//
+//        User user = new User();
+//        user.setName("vasya");
+//        user.setEmail("vasya@mail.ru");
+//        user.setDayOfBirth(Timestamp.valueOf("2016-05-27 00:00:00"));
+//
+//        app.getUserService().create(user);
+//
+//        Event event = new Event();
+//        event.setName("warcraft");
+//        event.setDate(Timestamp.valueOf("2016-05-27 00:00:00"));
+//        event.setTime(Time.valueOf("19:20:00"));
+//        event.setPrice(new BigDecimal(300));
+//        event.setRating(Rating.MID);
+//        event.setAuditorium(app.getAuditoriumService().getAllAuditoriums().get(0));
+//
+//        app.getEventService().create(event);
+//
+//        Ticket ticket = new Ticket();
+//        ticket.setSeat(25);
+//        ticket.setEvent(app.getEventService().getAllEvents().get(0));
+//        ticket.setBooked(true);
+//        ticket.setUser(app.getUserService().getAllUsers().get(0));
+//
+//        app.getBookingService().create(ticket);
+//
+//        //counters++
+//        app.getBookingService().getTicketPrice(app.getEventService().getAllEvents().get(0), 25, app.getUserService().getAllUsers().get(0));
+//        app.getBookingService().bookTicket(user, ticket);
+//        app.getEventService().getByName("warcraft");
+//
+//
+//        System.out.println(app.getAuditoriumService().getAllAuditoriums());
+//        System.out.println(app.getUserService().getAllUsers());
+//        System.out.println(app.getEventService().getAllEvents());
+//        System.out.println(app.getBookingService().getAllTickets());
+//        System.out.println(app.getEventStatService().getAllEventStats());
+//        System.out.println(app.getDiscountStatService().getAllEventStats());
     }
 
 
