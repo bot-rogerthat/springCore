@@ -20,8 +20,7 @@ public class AuditoriumDaoJdbcImpl implements AuditoriumDao {
         args.put("number_of_seats", target.getNumberOfSeats());
         SimpleJdbcInsert ins = new SimpleJdbcInsert(jdbcTemplate).withTableName("auditorium").usingGeneratedKeyColumns("id");
         int id = ins.executeAndReturnKey(args).intValue();
-        target.getVips().stream().forEach(vipSeat ->
-                jdbcTemplate.update("INSERT INTO vip_seat(auditorium_id, seat_number) VALUES(?,?)", id, vipSeat));
+        createVipSeats(target, id);
     }
 
     @Override
@@ -30,7 +29,8 @@ public class AuditoriumDaoJdbcImpl implements AuditoriumDao {
                 target.getName(),
                 target.getNumberOfSeats(),
                 target.getId());
-        //// TODO: 6/22/2016 vips update
+        jdbcTemplate.update("DELETE FROM vip_seat WHERE auditorium_id = ?", target.getId());
+        createVipSeats(target, target.getId());
     }
 
     @Override
@@ -65,6 +65,11 @@ public class AuditoriumDaoJdbcImpl implements AuditoriumDao {
     private List<Integer> getVipSeats(Integer id) {
         return jdbcTemplate.query("SELECT * FROM vip_seat WHERE auditorium_id = ?", new Object[]{id},
                 (rs, rowNum) -> rs.getInt("seat_number"));
+    }
+
+    private void createVipSeats(Auditorium target, int id){
+        target.getVips().stream().forEach(vipSeat ->
+                jdbcTemplate.update("INSERT INTO vip_seat(auditorium_id, seat_number) VALUES(?,?)", id, vipSeat));
     }
 
     public JdbcTemplate getJdbcTemplate() {
