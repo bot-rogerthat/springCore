@@ -1,0 +1,16 @@
+[
+  {
+    "name": "movie1",
+    "date": "2016-05-27",
+    "time": "14:00:00",
+    "price": "500",
+    "rating": "LOW"
+  },
+  {
+    "name": "movie2",
+    "date": "2016-05-27",
+    "time": "19:20:00",
+    "price": "300",
+    "rating": "MID"
+  }
+]
