@@ -1,0 +1,31 @@
+table {
+    width: 500px;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+
+td, th {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+th {
+    text-align: left;
+    background: lightgray;
+}
+
+.buttons {
+    display: flex;
+}
+
+.assign {
+    height: 20px;
+    width: 54px;
+    margin-right: 10px;
+}
+
+.delete {
+    height: 20px;
+    width: 54px;
+}

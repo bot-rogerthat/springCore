@@ -8,6 +8,9 @@
     <li><a href="auditoriums">Auditoriums</a></li>
     <li><a href="events">Events</a></li>
     <li><a href="users">Users</a></li>
+    ----------------------------------
+    <li><a href="employees">Employees</a></li>
+    <li><a href="jobs">Jobs</a></li>
 </ul>
 <h3>Upload auditoriums:</h3>
 <form enctype="multipart/form-data" action="upload/auditoriums" method="POST">

@@ -7,8 +7,6 @@
       http://www.springframework.org/schema/tx
       http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>
@@ -40,4 +38,6 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaDialect" ref="jpaDialect"/>
     </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
