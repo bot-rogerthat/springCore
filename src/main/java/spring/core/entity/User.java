@@ -1,14 +1,26 @@
 package spring.core.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "user_")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
+
     private String email;
+
+    @Column(name = "day_of_birth")
     private Timestamp dayOfBirth;
+
+    @Transient
     private List<Ticket> tickets = new ArrayList<>();
 
     public int getId() {

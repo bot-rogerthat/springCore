@@ -17,6 +17,11 @@ public class App {
     public static void main(String[] args) throws DaoException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/main.xml");
         App app = ctx.getBean("app", App.class);
+//        User user = new User();
+//        user.setName("jpa");
+//        user.setEmail("jpa");
+//        user.setDayOfBirth(Timestamp.valueOf("2016-04-04 00:00:00"));
+//        app.getUserService().create(user);
 //        Auditorium auditorium = new Auditorium();
 //        auditorium.setName("gr45Hall");
 //        auditorium.setNumberOfSeats(50);
