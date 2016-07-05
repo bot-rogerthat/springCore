@@ -1,5 +1,7 @@
 package spring.core.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.core.dao.DiscountStatDao;
 import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.DiscountStat;
@@ -7,7 +9,10 @@ import spring.core.entity.User;
 
 import java.util.List;
 
+@Service
 public class DiscountStatService {
+
+    @Autowired
     private DiscountStatDao discountStatDao;
 
     public DiscountStat getDiscountStat(User user, String discountName) throws DaoException {
@@ -28,7 +33,7 @@ public class DiscountStatService {
 
 
     private DiscountStat getDiscountStatByUserAndDiscountName(User target, String discountName) throws DaoException {
-        return discountStatDao.getAllDiscountStats().stream()
+        return discountStatDao.getAll().stream()
                 .filter(ds -> ds.getUserId() == target.getId())
                 .filter(ds -> ds.getDiscountName().equals(discountName))
                 .findFirst()
@@ -36,11 +41,6 @@ public class DiscountStatService {
     }
 
     public List<DiscountStat> getAllEventStats() throws DaoException {
-        return discountStatDao.getAllDiscountStats();
-    }
-
-
-    public void setDiscountStatDao(DiscountStatDao discountStatDao) {
-        this.discountStatDao = discountStatDao;
+        return discountStatDao.getAll();
     }
 }

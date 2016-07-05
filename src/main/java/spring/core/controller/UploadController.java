@@ -21,13 +21,13 @@ import java.io.IOException;
 public class UploadController {
 
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
 
     @Autowired
-    EventDao eventDao;
+    private EventDao eventDao;
 
     @Autowired
-    AuditoriumDao auditoriumDao;
+    private AuditoriumDao auditoriumDao;
 
     @RequestMapping(value = "upload/users", method = RequestMethod.POST)
     public String uploadUsers(@RequestParam(value = "file", required = false) MultipartFile multipart) throws IOException, DaoException {

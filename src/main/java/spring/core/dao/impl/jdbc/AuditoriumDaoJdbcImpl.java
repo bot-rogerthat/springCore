@@ -34,8 +34,8 @@ public class AuditoriumDaoJdbcImpl implements AuditoriumDao {
     }
 
     @Override
-    public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM auditorium WHERE id = ?", id);
+    public void delete(Auditorium target) {
+        jdbcTemplate.update("DELETE FROM auditorium WHERE id = ?", target.getId());
     }
 
     @Override
@@ -47,7 +47,7 @@ public class AuditoriumDaoJdbcImpl implements AuditoriumDao {
     }
 
     @Override
-    public List<Auditorium> getAllAuditoriums() {
+    public List<Auditorium> getAll() {
         return jdbcTemplate.query("SELECT * FROM auditorium", getAuditoriumRowMapper());
     }
 

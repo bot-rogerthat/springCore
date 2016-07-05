@@ -10,9 +10,9 @@ public interface EventStatDao {
 
     void update(EventStat target) throws DaoException;
 
-    void delete(int id) throws DaoException;
+    void delete(EventStat target) throws DaoException;
 
     EventStat getById(int id) throws DaoException;
 
-    List<EventStat> getAllEventStats() throws DaoException;
+    List<EventStat> getAll() throws DaoException;
 }

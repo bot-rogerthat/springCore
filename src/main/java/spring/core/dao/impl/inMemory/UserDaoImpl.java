@@ -1,4 +1,4 @@
-package spring.core.dao.impl.inmemory;
+package spring.core.dao.impl.inMemory;
 
 import spring.core.dao.UserDao;
 import spring.core.entity.User;
@@ -20,11 +20,8 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public void delete(int id) {
-        users.remove(users.stream()
-                .filter(user -> user.getId() == id)
-                .findFirst()
-                .get());
+    public void delete(User target) {
+        users.remove(target);
     }
 
     public User getById(int id) {
@@ -34,7 +31,7 @@ public class UserDaoImpl implements UserDao {
                 .get();
     }
 
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         return new ArrayList<>(users);
     }
 

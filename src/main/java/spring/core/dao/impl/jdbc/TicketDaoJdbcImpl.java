@@ -30,8 +30,8 @@ public class TicketDaoJdbcImpl implements TicketDao {
     }
 
     @Override
-    public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM ticket WHERE id=?", id);
+    public void delete(Ticket target) {
+        jdbcTemplate.update("DELETE FROM ticket WHERE id=?", target.getId());
     }
 
     @Override
@@ -41,7 +41,7 @@ public class TicketDaoJdbcImpl implements TicketDao {
     }
 
     @Override
-    public List<Ticket> getAllTickets() {
+    public List<Ticket> getAll() {
         return jdbcTemplate.query("SELECT * FROM ticket", getTicketRowMapper());
     }
 

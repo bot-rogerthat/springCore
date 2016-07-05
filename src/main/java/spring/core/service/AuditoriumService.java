@@ -1,16 +1,21 @@
 package spring.core.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.core.dao.AuditoriumDao;
 import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Auditorium;
 
 import java.util.List;
 
+@Service
 public class AuditoriumService {
+
+    @Autowired
     private AuditoriumDao auditoriumDao;
 
     public int getSeatsNumber(String name) throws DaoException {
-        return auditoriumDao.getAllAuditoriums().stream()
+        return auditoriumDao.getAll().stream()
                 .filter(auditorium -> name.equalsIgnoreCase(auditorium.getName()))
                 .findFirst()
                 .get()
@@ -18,7 +23,7 @@ public class AuditoriumService {
     }
 
     public List<Integer> getVipSeats(int id) throws DaoException {
-        return auditoriumDao.getAllAuditoriums().stream()
+        return auditoriumDao.getAll().stream()
                 .filter(auditorium -> id == auditorium.getId())
                 .findFirst()
                 .get()
@@ -29,16 +34,15 @@ public class AuditoriumService {
         auditoriumDao.create(target);
     }
 
-    public void delete(int id) throws DaoException {
-        auditoriumDao.delete(id);
+    public void delete(Auditorium target) throws DaoException {
+        auditoriumDao.delete(target);
+    }
+
+    public Auditorium getById(int id) throws DaoException {
+        return auditoriumDao.getById(id);
     }
 
     public List<Auditorium> getAllAuditoriums() throws DaoException {
-        return auditoriumDao.getAllAuditoriums();
-    }
-
-
-    public void setAuditoriumDao(AuditoriumDao auditoriumDao) {
-        this.auditoriumDao = auditoriumDao;
+        return auditoriumDao.getAll();
     }
 }

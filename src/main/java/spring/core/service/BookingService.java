@@ -1,5 +1,7 @@
 package spring.core.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.core.dao.TicketDao;
 import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Event;
@@ -10,11 +12,16 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class BookingService {
 
     private final BigDecimal VIP_MARKUP = new BigDecimal(50);
+
+    @Autowired
     private TicketDao ticketDao;
+    @Autowired
     private DiscountService discountService;
+    @Autowired
     private AuditoriumService auditoriumService;
 
     public BigDecimal getTicketPrice(Event event, Integer seat, User user) throws DaoException {
@@ -31,7 +38,7 @@ public class BookingService {
     }
 
     public List<Ticket> getTicketsForEvent(Event event) throws DaoException {
-        return ticketDao.getAllTickets().stream()
+        return ticketDao.getAll().stream()
                 .filter(ticket -> event.getId() == ticket.getEventId())
                 .filter(Ticket::isBooked)
                 .collect(Collectors.toList());
@@ -42,14 +49,6 @@ public class BookingService {
     }
 
     public List<Ticket> getAllTickets() throws DaoException {
-        return ticketDao.getAllTickets();
-    }
-
-    public void setTicketDao(TicketDao ticketDao) {
-        this.ticketDao = ticketDao;
-    }
-
-    public void setDiscountService(DiscountService discountService) {
-        this.discountService = discountService;
+        return ticketDao.getAll();
     }
 }

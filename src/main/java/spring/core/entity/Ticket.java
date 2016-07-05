@@ -1,6 +1,13 @@
 package spring.core.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ticket")
 public class Ticket {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Integer seat;
     private boolean booked;

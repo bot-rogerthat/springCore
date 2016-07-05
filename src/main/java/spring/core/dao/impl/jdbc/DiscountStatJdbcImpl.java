@@ -30,8 +30,8 @@ public class DiscountStatJdbcImpl implements DiscountStatDao {
     }
 
     @Override
-    public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM discount_stat WHERE id=?", id);
+    public void delete(DiscountStat target) {
+        jdbcTemplate.update("DELETE FROM discount_stat WHERE id=?", target.getId());
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DiscountStatJdbcImpl implements DiscountStatDao {
 
 
     @Override
-    public List<DiscountStat> getAllDiscountStats() throws DaoException {
+    public List<DiscountStat> getAll() throws DaoException {
         return jdbcTemplate.query("SELECT * FROM discount_stat", getDiscountStatRowMapper());
     }
 

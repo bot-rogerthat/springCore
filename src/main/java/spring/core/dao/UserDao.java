@@ -10,9 +10,9 @@ public interface UserDao {
 
     void update(User target) throws DaoException;
 
-    void delete(int id) throws DaoException;
+    void delete(User target) throws DaoException;
 
     User getById(int id) throws DaoException;
 
-    List<User> getAllUsers() throws DaoException;
+    List<User> getAll() throws DaoException;
 }

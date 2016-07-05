@@ -1,5 +1,6 @@
 package spring.core.service;
 
+import org.springframework.stereotype.Service;
 import spring.core.entity.Event;
 import spring.core.entity.User;
 import spring.core.entity.discount.DiscountStrategy;
@@ -7,6 +8,7 @@ import spring.core.entity.discount.DiscountStrategy;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Service
 public class DiscountService {
     private List<DiscountStrategy> discounts;
 

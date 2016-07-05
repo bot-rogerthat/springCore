@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="<c:url value="/resources/css/table.css" />">
+    <link rel="stylesheet" href="<c:url value='/resources/css/table.css'/>">
 </head>
 <body>
 <h2>Employees:</h2>

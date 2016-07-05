@@ -1,4 +1,4 @@
-package spring.core.dao.impl.inmemory;
+package spring.core.dao.impl.inMemory;
 
 import spring.core.dao.AuditoriumDao;
 import spring.core.entity.Auditorium;
@@ -20,11 +20,8 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
         }
     }
 
-    public void delete(int id) {
-        auditoriums.remove(auditoriums.stream()
-                .filter(auditorium -> auditorium.getId() == id)
-                .findFirst()
-                .get());
+    public void delete(Auditorium target) {
+        auditoriums.remove(target);
     }
 
     public Auditorium getById(int id) {
@@ -34,7 +31,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
                 .get();
     }
 
-    public List<Auditorium> getAllAuditoriums() {
+    public List<Auditorium> getAll() {
         return new ArrayList<>(auditoriums);
     }
 

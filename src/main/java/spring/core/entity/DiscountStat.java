@@ -1,9 +1,21 @@
 package spring.core.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "discount_stat")
 public class DiscountStat {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "user_id")
     private int userId;
+
+    @Column(name = "discount_name")
     private String discountName;
+
     private int count;
 
     public int getId() {

@@ -10,9 +10,9 @@ public interface DiscountStatDao {
 
     void update(DiscountStat target) throws DaoException;
 
-    void delete(int id) throws DaoException;
+    void delete(DiscountStat target) throws DaoException;
 
     DiscountStat getById(int id) throws DaoException;
 
-    List<DiscountStat> getAllDiscountStats() throws DaoException;
+    List<DiscountStat> getAll() throws DaoException;
 }

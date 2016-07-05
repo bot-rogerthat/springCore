@@ -1,13 +1,23 @@
 package spring.core.entity;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "auditorium")
 public class Auditorium {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
+
+    @Column(name = "number_of_seats")
     private int numberOfSeats;
-    private List<Integer> vips = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Integer> vips;
 
     public int getId() {
         return id;

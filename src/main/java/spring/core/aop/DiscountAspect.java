@@ -3,6 +3,7 @@ package spring.core.aop;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
 import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.DiscountStat;
 import spring.core.entity.User;
@@ -12,6 +13,8 @@ import java.math.BigDecimal;
 
 @Aspect
 public class DiscountAspect {
+
+    @Autowired
     private DiscountStatService discountStatService;
 
     @AfterReturning(pointcut = "execution(* spring.core.entity.discount.DiscountStrategy.apply(..)) && args(user,..)", returning = "discount")
@@ -22,13 +25,5 @@ public class DiscountAspect {
             discountStat.setCount(discountStat.getCount() + 1);
             discountStatService.updateStat(discountStat);
         }
-    }
-
-    public DiscountStatService getDiscountStatService() {
-        return discountStatService;
-    }
-
-    public void setDiscountStatService(DiscountStatService discountStatService) {
-        this.discountStatService = discountStatService;
     }
 }

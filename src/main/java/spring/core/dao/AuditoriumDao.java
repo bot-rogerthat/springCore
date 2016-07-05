@@ -10,9 +10,9 @@ public interface AuditoriumDao {
 
     void update(Auditorium target) throws DaoException;
 
-    void delete(int id) throws DaoException;
+    void delete(Auditorium target) throws DaoException;
 
     Auditorium getById(int id) throws DaoException;
 
-    List<Auditorium> getAllAuditoriums() throws DaoException;
+    List<Auditorium> getAll() throws DaoException;
 }

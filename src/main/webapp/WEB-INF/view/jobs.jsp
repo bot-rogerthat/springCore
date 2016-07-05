@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="<c:url value="/resources/css/table.css" />">
+    <link rel="stylesheet" href="<c:url value='/resources/css/table.css'/>">
 </head>
 <body>
 <h2>Jobs:</h2>
@@ -31,7 +31,6 @@
                 <th>Actions</th>
             </c:otherwise>
         </c:choose>
-
     </tr>
     <c:forEach var="job" items="${jobs}">
         <spring:url value="jobs/assignJob/${job.id}" var="urlAssignJob"/>
@@ -40,7 +39,6 @@
             <td>${job.description}</td>
             <td>${job.date}</td>
             <td>${job.employee.name}</td>
-
             <c:choose>
                 <c:when test="${aboutEmployee}">
                 </c:when>

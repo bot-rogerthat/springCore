@@ -1,5 +1,7 @@
 package spring.core.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.core.dao.UserDao;
 import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Ticket;
@@ -7,11 +9,14 @@ import spring.core.entity.User;
 
 import java.util.List;
 
+@Service
 public class UserService {
+
+    @Autowired
     private UserDao userDao;
 
-    public void delete(int id) throws DaoException {
-        userDao.delete(id);
+    public void delete(User target) throws DaoException {
+        userDao.delete(target);
     }
 
     public User getById(int id) throws DaoException {
@@ -19,7 +24,7 @@ public class UserService {
     }
 
     public User getUserByEmail(String email) throws DaoException {
-        List<User> users = userDao.getAllUsers();
+        List<User> users = userDao.getAll();
         return users.stream()
                 .filter(user -> email.equalsIgnoreCase(user.getEmail()))
                 .findFirst()
@@ -27,7 +32,7 @@ public class UserService {
     }
 
     public User getUsersByName(String name) throws DaoException {
-        List<User> users = userDao.getAllUsers();
+        List<User> users = userDao.getAll();
         return users.stream()
                 .filter(user -> name.equalsIgnoreCase(user.getName()))
                 .findFirst()
@@ -35,7 +40,7 @@ public class UserService {
     }
 
     public List<Ticket> getBookedTickets(User target) throws DaoException {
-        List<User> users = userDao.getAllUsers();
+        List<User> users = userDao.getAll();
         return users.stream()
                 .filter(user -> user.equals(target))
                 .findFirst()
@@ -48,10 +53,6 @@ public class UserService {
     }
 
     public List<User> getAllUsers() throws DaoException {
-        return userDao.getAllUsers();
-    }
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
+        return userDao.getAll();
     }
 }

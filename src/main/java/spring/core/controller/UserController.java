@@ -66,7 +66,7 @@ public class UserController {
 
     @RequestMapping(value = "/users/deleteUser/{id}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable(value = "id") int id) throws DaoException {
-        userService.delete(id);
+        userService.delete(userService.getById(id));
         return "redirect:/users";
     }
 

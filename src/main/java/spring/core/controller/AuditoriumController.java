@@ -43,7 +43,7 @@ public class AuditoriumController {
 
     @RequestMapping(value = "/auditoriums/deleteAuditorium/{id}", method = RequestMethod.GET)
     public String deleteAuditorium(@PathVariable(value = "id") int id) throws DaoException {
-        auditoriumService.delete(id);
+        auditoriumService.delete(auditoriumService.getById(id));
         return "redirect:/auditoriums";
     }
 

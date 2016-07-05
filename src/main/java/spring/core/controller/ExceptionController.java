@@ -12,7 +12,6 @@ public class ExceptionController {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView doException(Exception e) {
-        System.out.println(e);
         log.error("Thrown ex in controller", e);
         return new ModelAndView("error", "message", e.getMessage());
     }

@@ -10,9 +10,9 @@ public interface TicketDao {
 
     void update(Ticket target) throws DaoException;
 
-    void delete(int id) throws DaoException;
+    void delete(Ticket target) throws DaoException;
 
     Ticket getById(int id) throws DaoException;
 
-    List<Ticket> getAllTickets() throws DaoException;
+    List<Ticket> getAll() throws DaoException;
 }

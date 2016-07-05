@@ -10,6 +10,7 @@ import spring.core.entity.Rating;
 import java.util.List;
 
 public class EventDaoJdbcImpl implements EventDao {
+
     private JdbcTemplate jdbcTemplate;
     private AuditoriumDao auditoriumDao;
 
@@ -37,8 +38,8 @@ public class EventDaoJdbcImpl implements EventDao {
     }
 
     @Override
-    public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM event WHERE id=?", id);
+    public void delete(Event target) {
+        jdbcTemplate.update("DELETE FROM event WHERE id=?", target.getId());
     }
 
     @Override
@@ -48,7 +49,7 @@ public class EventDaoJdbcImpl implements EventDao {
     }
 
     @Override
-    public List<Event> getAllEvents() {
+    public List<Event> getAll() {
         return jdbcTemplate.query("SELECT * FROM event", getEventRowMapper());
     }
 

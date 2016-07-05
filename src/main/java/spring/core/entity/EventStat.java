@@ -1,10 +1,24 @@
 package spring.core.entity;
 
+import javax.persistence.*;
+
+@Entity
 public class EventStat {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "event_id")
     private int eventId;
+
+    @Column(name = "count_by_event_name")
     private int countByEventName;
+
+    @Column(name = "count_by_event_price")
     private int countByEventPrice;
+
+    @Column(name = "count_by_ticket_booked")
     private int countByTicketBooked;
 
     public int getId() {

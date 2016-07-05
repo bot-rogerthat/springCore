@@ -1,16 +1,30 @@
 package spring.core.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.sql.Timestamp;
 
+@Entity
+@Table(name = "event")
 public class Event {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
+
     private Timestamp date;
+
     private Time time;
+
     private BigDecimal price;
+
+    @Enumerated(EnumType.STRING)
     private Rating rating;
+
+    @Column(name = "auditorium_id")
     private int auditoriumId;
 
     public int getId() {

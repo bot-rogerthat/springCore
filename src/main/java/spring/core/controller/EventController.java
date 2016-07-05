@@ -94,7 +94,7 @@ public class EventController {
 
     @RequestMapping(value = "/events/deleteEvent/{id}", method = RequestMethod.GET)
     public String deleteEvent(@PathVariable(value = "id") int id) throws DaoException {
-        eventService.delete(id);
+        eventService.delete(eventService.getById(id));
         return "redirect:/events";
     }
 

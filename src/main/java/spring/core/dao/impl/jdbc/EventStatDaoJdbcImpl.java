@@ -1,5 +1,6 @@
 package spring.core.dao.impl.jdbc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import spring.core.dao.EventDao;
@@ -9,7 +10,10 @@ import spring.core.entity.EventStat;
 import java.util.List;
 
 public class EventStatDaoJdbcImpl implements EventStatDao {
+
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
     private EventDao eventDao;
 
     @Override
@@ -32,8 +36,8 @@ public class EventStatDaoJdbcImpl implements EventStatDao {
     }
 
     @Override
-    public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM event_stat WHERE id=?", id);
+    public void delete(EventStat target) {
+        jdbcTemplate.update("DELETE FROM event_stat WHERE id=?", target.getId());
     }
 
     @Override
@@ -43,7 +47,7 @@ public class EventStatDaoJdbcImpl implements EventStatDao {
     }
 
     @Override
-    public List<EventStat> getAllEventStats() throws DaoException {
+    public List<EventStat> getAll() throws DaoException {
         return jdbcTemplate.query("SELECT * FROM event_stat", getEventStatRowMapper());
     }
 
@@ -65,13 +69,5 @@ public class EventStatDaoJdbcImpl implements EventStatDao {
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public EventDao getEventDao() {
-        return eventDao;
-    }
-
-    public void setEventDao(EventDao eventDao) {
-        this.eventDao = eventDao;
     }
 }

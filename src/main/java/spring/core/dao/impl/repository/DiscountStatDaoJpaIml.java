@@ -2,46 +2,46 @@ package spring.core.dao.impl.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import spring.core.dao.UserDao;
+import spring.core.dao.DiscountStatDao;
 import spring.core.dao.impl.jdbc.DaoException;
-import spring.core.entity.User;
+import spring.core.entity.DiscountStat;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDaoJpaImpl implements UserDao {
+public class DiscountStatDaoJpaIml implements DiscountStatDao {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
     @Transactional
-    public void create(User target) throws DaoException {
+    public void create(DiscountStat target) throws DaoException {
         em.persist(target);
     }
 
     @Override
     @Transactional
-    public void update(User target) throws DaoException {
+    public void update(DiscountStat target) throws DaoException {
         em.merge(target);
     }
 
     @Override
     @Transactional
-    public void delete(User target) throws DaoException {
+    public void delete(DiscountStat target) throws DaoException {
         em.remove(em.contains(target) ? target : em.merge(target));
     }
 
     @Override
-    public User getById(int id) throws DaoException {
-        return em.find(User.class, id);
+    public DiscountStat getById(int id) throws DaoException {
+        return em.find(DiscountStat.class, id);
     }
 
     @Override
     @Transactional
-    public List<User> getAll() throws DaoException {
-        return em.createQuery("from User", User.class).getResultList();
+    public List<DiscountStat> getAll() throws DaoException {
+        return em.createQuery("from DiscountStat", DiscountStat.class).getResultList();
     }
 }

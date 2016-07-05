@@ -1,5 +1,7 @@
 package spring.core.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.core.dao.EventStatDao;
 import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Event;
@@ -7,7 +9,10 @@ import spring.core.entity.EventStat;
 
 import java.util.List;
 
+@Service
 public class EventStatService {
+
+    @Autowired
     private EventStatDao eventStatDao;
 
     public EventStat getEventStat(Event target) throws DaoException {
@@ -26,17 +31,13 @@ public class EventStatService {
 
 
     private EventStat getEventStatByEvent(Event target) throws DaoException {
-        return eventStatDao.getAllEventStats().stream()
+        return eventStatDao.getAll().stream()
                 .filter(es -> es.getEventId() == target.getId())
                 .findFirst()
                 .orElse(null);
     }
 
     public List<EventStat> getAllEventStats() throws DaoException {
-        return eventStatDao.getAllEventStats();
-    }
-
-    public void setEventStatDao(EventStatDao eventStatDao) {
-        this.eventStatDao = eventStatDao;
+        return eventStatDao.getAll();
     }
 }

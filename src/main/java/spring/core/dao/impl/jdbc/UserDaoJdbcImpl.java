@@ -33,8 +33,8 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     @Override
-    public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM user_ WHERE id=?", id);
+    public void delete(User target) {
+        jdbcTemplate.update("DELETE FROM user_ WHERE id=?", target.getId());
     }
 
     @Override
@@ -44,7 +44,7 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         return jdbcTemplate.query("SELECT * FROM user_", getUserRowMapper());
     }
 

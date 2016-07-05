@@ -1,5 +1,7 @@
 package spring.core.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.core.dao.EventDao;
 import spring.core.dao.impl.jdbc.DaoException;
 import spring.core.entity.Auditorium;
@@ -9,19 +11,22 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
+@Service
 public class EventService {
+
+    @Autowired
     private EventDao eventDao;
 
     public void create(Event target) throws DaoException {
         eventDao.create(target);
     }
 
-    public void delete(int id) throws DaoException {
-        eventDao.delete(id);
+    public void delete(Event target) throws DaoException {
+        eventDao.delete(target);
     }
 
     public Event getByName(String name) throws DaoException {
-        List<Event> events = eventDao.getAllEvents();
+        List<Event> events = eventDao.getAll();
         return events.stream()
                 .filter(event -> name.equalsIgnoreCase(event.getName()))
                 .findFirst()
@@ -29,7 +34,7 @@ public class EventService {
     }
 
     public List<Event> getAll() throws DaoException {
-        return eventDao.getAllEvents();
+        return eventDao.getAll();
     }
 
     public Event getById(int id) throws DaoException {
@@ -44,10 +49,6 @@ public class EventService {
     }
 
     public List<Event> getAllEvents() throws DaoException {
-        return eventDao.getAllEvents();
-    }
-
-    public void setEventDao(EventDao eventDao) {
-        this.eventDao = eventDao;
+        return eventDao.getAll();
     }
 }
