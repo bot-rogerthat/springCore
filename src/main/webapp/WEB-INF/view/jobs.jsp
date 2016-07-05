@@ -12,7 +12,7 @@
 <h2>Jobs:</h2>
 <c:choose>
     <c:when test="${aboutEmployee}">
-        <h2>Employee:</h2>
+        <h2>employee id = ${employeeId}</h2>
     </c:when>
     <c:otherwise>
         <input type="submit" value="Add" onclick="location.href='jobs/addJob'"/>
@@ -36,13 +36,16 @@
         <spring:url value="jobs/assignJob/${job.id}" var="urlAssignJob"/>
         <spring:url value="jobs/deleteJob/${job.id}" var="urlDeleteJob"/>
         <tr>
-            <td>${job.description}</td>
-            <td>${job.date}</td>
-            <td><a href="employees/${job.employee.id}">${job.employee.name}</a></td>
             <c:choose>
                 <c:when test="${aboutEmployee}">
+                    <td>${job.description}</td>
+                    <td><fmt:formatDate value="${job.date}" pattern="yyyy-MM-dd"/></td>
+                    <td>${job.employee.name}</td>
                 </c:when>
                 <c:otherwise>
+                    <td>${job.description}</td>
+                    <td><fmt:formatDate value="${job.date}" pattern="yyyy-MM-dd"/></td>
+                    <td><a href="employees/${job.employee.id}">${job.employee.name}</a></td>
                     <td>
                         <div class="buttons">
                             <input class="assign" type="submit" value="Assign"

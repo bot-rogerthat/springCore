@@ -48,6 +48,7 @@ public class EmployeeController {
         List<Job> jobs = new ArrayList<>(employeeService.getAllJobs(employeeService.getById(Integer.parseInt(id))));
         model.addObject("jobs", jobs);
         model.addObject("aboutEmployee", true);
+        model.addObject("employeeId", id);
         return model;
     }
 

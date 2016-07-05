@@ -23,8 +23,8 @@
             </td>
         </tr>
         <tr>
-            <td>Date (yyyy-mm-dd hh:mm:ss):</td>
-            <td><input type="text" name="date" required/></td>
+            <td>Date:</td>
+            <td><input type="date" name="date" required/></td>
         </tr>
         <tr>
             <td><input type="submit" value="Submit"/></td>

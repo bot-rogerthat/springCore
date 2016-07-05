@@ -10,6 +10,7 @@ import spring.core.entity.Job;
 import spring.core.service.EmployeeService;
 import spring.core.service.JobService;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -60,8 +61,8 @@ public class JobController {
     @RequestMapping(value = "/jobs/assignJob/{jobId}", method = RequestMethod.POST)
     public String assignJob(@PathVariable("jobId") int jobId,
                             @RequestParam("employee") int employeeId,
-                            @RequestParam("date") Timestamp date) throws DaoException {
-        jobService.assign(employeeService.getById(employeeId), jobService.getById(jobId), date);
+                            @RequestParam("date") Date date) throws DaoException {
+        jobService.assign(employeeService.getById(employeeId), jobService.getById(jobId), new Timestamp(date.getTime()));
         return "redirect:/jobs";
     }
 }
