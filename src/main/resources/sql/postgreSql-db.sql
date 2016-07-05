@@ -89,6 +89,33 @@ CACHE 1;
 ALTER TABLE discount_stat_id_seq
 OWNER TO postgres;
 
+-- Sequence: public.employee_id_seq
+
+-- DROP SEQUENCE public.employee_id_seq;
+
+CREATE SEQUENCE public.employee_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 2
+  CACHE 1;
+ALTER TABLE public.employee_id_seq
+  OWNER TO postgres;
+
+-- Sequence: public.job_id_seq
+
+-- DROP SEQUENCE public.job_id_seq;
+
+CREATE SEQUENCE public.job_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 3
+  CACHE 1;
+ALTER TABLE public.job_id_seq
+  OWNER TO postgres;
+
+
 -- Table: public.user_
 
 -- DROP TABLE public.user_;
@@ -226,3 +253,40 @@ OIDS =FALSE
 );
 ALTER TABLE discount_stat
 OWNER TO postgres;
+
+-- Table: public.employee
+
+-- DROP TABLE public.employee;
+
+CREATE TABLE public.employee
+(
+  id integer NOT NULL DEFAULT nextval('employee_id_seq'::regclass),
+  name character varying(255),
+  CONSTRAINT pk_employee_id PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.employee
+  OWNER TO postgres;
+
+-- Table: public.job
+
+-- DROP TABLE public.job;
+
+CREATE TABLE public.job
+(
+  id integer NOT NULL DEFAULT nextval('job_id_seq'::regclass),
+  description character varying(255),
+  employee_id bigint,
+  date timestamp without time zone,
+  CONSTRAINT pk_job_id PRIMARY KEY (id),
+  CONSTRAINT fk_employee_id FOREIGN KEY (employee_id)
+      REFERENCES public.employee (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.job
+  OWNER TO postgres;
