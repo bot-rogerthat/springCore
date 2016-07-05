@@ -43,7 +43,6 @@
         </td>
     </tr>
 </table>
-    ----------------------------------
 <ul>
     <li><a href="employees">Employees</a></li>
     <li><a href="jobs">Jobs</a></li>

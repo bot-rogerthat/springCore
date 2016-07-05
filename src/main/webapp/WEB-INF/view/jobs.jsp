@@ -38,7 +38,7 @@
         <tr>
             <td>${job.description}</td>
             <td>${job.date}</td>
-            <td>${job.employee.name}</td>
+            <td><a href="employees/${job.employee.id}">${job.employee.name}</a></td>
             <c:choose>
                 <c:when test="${aboutEmployee}">
                 </c:when>
